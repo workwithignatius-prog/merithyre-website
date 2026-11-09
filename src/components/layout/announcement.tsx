@@ -1,9 +1,10 @@
-import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const items: { text: string; href?: string }[] = [
   {
     text: "New guide: how to spot fake profiles and proxy interviewees",
-    href: "https://merithyre.ai/candidate-fraud-in-hiring-spot-fake-profiles-and-proxies/",
+    href: "/blog/candidate-fraud-in-hiring-spot-fake-profiles-and-proxies/",
   },
   { text: "Plans from $99/month. No contract." },
   { text: "Live in under a day." },
@@ -17,14 +18,14 @@ function Row({ hidden }: { hidden?: boolean }) {
       {items.map((it) => (
         <li key={it.text} className="flex items-center">
           {it.href ? (
-            <a
+            <Link
               href={it.href}
               tabIndex={hidden ? -1 : undefined}
               className="inline-flex items-center gap-1 font-medium text-fg underline decoration-white/25 underline-offset-4 hover:decoration-mh-300"
             >
               {it.text}
-              <ArrowUpRight aria-hidden className="size-3.5 text-mh-300" />
-            </a>
+              <ArrowRight aria-hidden className="size-3.5 text-mh-300" />
+            </Link>
           ) : (
             <span>{it.text}</span>
           )}
@@ -38,7 +39,7 @@ function Row({ hidden }: { hidden?: boolean }) {
 /** Scrolling announcement bar. Pauses on hover; static for reduced motion. */
 export function Announcement() {
   return (
-    <div className="relative overflow-hidden border-b border-white/[0.06] bg-[#050505] text-[13px] text-white/70">
+    <div className="relative z-10 overflow-hidden border-b border-white/[0.06] bg-[#050505] text-[13px] text-white/70">
       <div className="animate-marquee flex w-max py-2.5 hover:[animation-play-state:paused] motion-reduce:animate-none">
         <Row />
         <Row hidden />

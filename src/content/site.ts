@@ -15,8 +15,8 @@ export const site = {
     x: "https://x.com/merithyre",
     facebook: "https://www.facebook.com/merithyre/",
   },
-  // The blog and legal pages still live on the current WordPress site.
-  blogUrl: "https://merithyre.ai/blog/",
+  blogUrl: "/blog/",
+  // The legal pages still live on the current WordPress site.
   privacyUrl: "https://merithyre.ai/privacy-policy/",
   termsUrl: "https://merithyre.ai/terms-of-service/",
   demoHref: "/contact-us/?topic=demo",

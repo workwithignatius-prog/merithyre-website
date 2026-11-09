@@ -28,7 +28,10 @@ export function pageMetadata({
   return {
     title: absoluteTitle ? { absolute: title } : title,
     description,
-    alternates: { canonical: path },
+    alternates: {
+      canonical: path,
+      types: { "application/rss+xml": [{ url: "/rss.xml", title: "MeritHyre Blog" }] },
+    },
     openGraph: {
       type: "website",
       siteName: site.name,
@@ -38,6 +41,6 @@ export function pageMetadata({
       description,
       images: [ogImage],
     },
-    twitter: { card: "summary_large_image", title: ogTitle, description, images: [ogImage.url] },
+    twitter: { card: "summary_large_image", site: "@merithyre", title: ogTitle, description, images: [ogImage.url] },
   };
 }

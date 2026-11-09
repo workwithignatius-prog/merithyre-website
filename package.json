@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/generate-seo-files.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "deploy:pages": "bash scripts/deploy-pages.sh"
+    "deploy:pages": "bash scripts/deploy-pages.sh",
+    "seo:files": "node scripts/generate-seo-files.mjs"
   },
   "dependencies": {
     "geist": "^1.9.2",

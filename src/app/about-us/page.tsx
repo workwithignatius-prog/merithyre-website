@@ -13,9 +13,12 @@ import { ButtonLink } from "@/components/ui/button";
 import { aboutStats, principles } from "@/content/about";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbSchema, graph, webPageSchema } from "@/lib/schema";
 
 export const metadata: Metadata = pageMetadata({
-  title: "About",
+  title: "About MeritHyre: AI Recruiting Built by Recruiters",
+  absoluteTitle: true,
   description:
     "MeritHyre was founded by a team that spent 20 years running a staffing and recruiting agency. We lived the problem before we built the solution.",
   path: "/about-us/",
@@ -24,6 +27,20 @@ export const metadata: Metadata = pageMetadata({
 export default function AboutPage() {
   return (
     <>
+      <JsonLd
+        data={graph(
+          webPageSchema({
+            type: "AboutPage",
+            path: "/about-us/",
+            name: "About MeritHyre",
+            description: "MeritHyre was founded by a team that spent 20 years running a staffing and recruiting agency.",
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about-us/" },
+          ]),
+        )}
+      />
       <PageHero
         decor={<AboutHeroChips />}
         eyebrow="About MeritHyre"
@@ -35,13 +52,8 @@ export default function AboutPage() {
           </>
         }
         body="MeritHyre was founded by a team that spent 20 years running a staffing and recruiting agency. We lived the problem before we built the solution."
+        after={<Stats items={aboutStats} className="mx-auto max-w-[1000px]" />}
       />
-
-      <section className="px-5 sm:px-6">
-        <div className="mx-auto max-w-[1000px]">
-          <Stats items={aboutStats} />
-        </div>
-      </section>
 
 
       <section className="px-5 py-14 sm:px-6 sm:py-20">

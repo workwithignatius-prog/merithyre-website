@@ -26,9 +26,14 @@ Requires Node 20.9+.
 | `/staffing/` · `/smbs-midmarket/` · `/enterprise/` · `/startups/` | `src/app/<slug>/page.tsx` → shared `src/components/solutions/solution-page.tsx` |
 | `/about-us/` | `src/app/about-us/page.tsx` |
 | `/contact-us/` | `src/app/contact-us/page.tsx` |
+| `/blog/` | `src/app/blog/page.tsx` |
+| `/blog/<slug>/` | `src/app/blog/[slug]/page.tsx` (one page per post in `src/content/blog/posts.json`) |
 
 URLs (with trailing slashes) match the current WordPress site, so existing links and search rankings carry over.
-`/merithyre-lp-staffing/` (a 404 on the old site) redirects to `/staffing/`.
+Redirects (in `next.config.ts`, normal builds only):
+- `/merithyre-lp-staffing/` (a 404 on the old site) → `/staffing/`
+- WordPress served posts at the root (`/<slug>/`); each one now 301s to `/blog/<slug>/`
+- `/category/…`, `/tag/…`, `/author/…` → `/blog/`, and `/feed/` → `/rss.xml`
 
 ## Editing copy
 
@@ -38,20 +43,34 @@ All copy lives in `src/content/`, separate from layout:
 - `segments.ts`: everything on the four use-case pages (hero, stats, before/after, quotes)
 - `pricing.ts`: plans, features, pricing FAQ
 - `pipeline.ts`: the 7 stages
+- `usps.ts`: the six "Why MeritHyre" differentiators on the homepage
 - `testimonials.ts`, `about.ts`, `navigation.ts`
+
+## Blog
+
+The 12 posts from the WordPress site were migrated into `src/content/blog/posts.json` (sanitised HTML,
+table of contents, reading time) with their images converted to WebP in `public/blog/images/`.
+
+- **Re-import from WordPress:** `scripts/import-wordpress-posts.py` (requirements are listed at the top of the script).
+- **Add or edit a post:** edit `posts.json` (keep the same fields). The page, sitemap entry, RSS item and
+  structured data are generated from it.
+- Body HTML is restricted to headings, paragraphs, lists, links, quotes, tables and images, and is styled by `.article`
+  in `globals.css` (the light reading sheet).
 
 ## Design system
 
 Defined in `src/app/globals.css` (Tailwind v4 `@theme`).
 
 - **Canvas** `#09090a`: a warm near-black with plain panels and hairline borders. No grid meshes, frame lines, glowing pills or gradient-filled text.
-- **Section rhythm:** sections are told apart by their surfaces, not by divider lines. On the homepage the order is: open hero, then the gradient stats band (`<Stats>`), the lit "How it works" stage (`<PipelineSection>`), cards, the featured testimonial (`<Quotes>`), the founders' letter card and the CTA band.
+- **Light:** heroes sit on `bg-hero` (split layouts) or `bg-hero-center` (centred): a deep-green sky that brightens toward the product, with teal and a sunrise-amber glow, fading into the canvas. Stats sit on the hero as frosted glass (`<Stats>`).
+- **Paper sections:** a warm off-white sheet (`bg-paper`, ink text) gives the page bright moments: the "Why MeritHyre" USPs, customer quotes and the blog reading sheet. Use `tone="light"` on `SectionHeading`/`Quotes` there, and the `ink` button variant.
+- **Section rhythm:** sections are told apart by their surfaces, not by divider lines. Homepage order: lit hero (with logos and stats), USP paper sheet, the "How it works" stage, product cards, solutions, quotes on paper, the founders' letter card, compliance, latest blog posts, CTA band.
 - **Brand green** `mh-*` is the logo green `#166534`, pushed luminous (`#34e39c`) for dark UI.
 - **Amber** `sun-*` is reserved for moments where a **person** decides (shortlist gate, approvals, "held for review"). Green means the AI runs that stage.
-- **Gradient** appears in two deliberate places:
-  - `bg-backdrop`: the green → teal → sunrise-amber card that products sit on.
+- **Gradient** appears in deliberate places:
+  - `bg-hero` / `bg-hero-center`: the hero light described above.
+  - `bg-backdrop`: the green → teal → sunrise-amber card (featured quote, CTA band, small product moments).
   - `<Swash>`: the hand-drawn underline that runs from green (AI) to amber (human).
-  - `bg-atmosphere` adds a soft glow behind hero areas.
 - **Type:** Bricolage Grotesque for headlines (`font-display`, in `src/fonts/`, OFL) and Geist for UI and body. Both are local files, so builds work offline.
 - **Motion:** CSS-first. Covers the announcement marquee, the demo preview, the underline draw-in and scroll reveals (`animation-timeline: view()`, progressive enhancement). Everything respects `prefers-reduced-motion`.
 
@@ -72,10 +91,16 @@ The scrolling announcement bar is in `src/components/layout/announcement.tsx`.
 
 ## SEO
 
-- Per-page title, description, canonical and Open Graph (`src/lib/metadata.ts`)
-- `public/og.png` share image
-- `public/sitemap.xml` and `public/robots.txt`: static files, so they work in every build mode. Add new pages to the sitemap by hand.
-- Structured data: Organization and SoftwareApplication with offers on `/`, FAQPage on `/pricing/`
+- Per-page title, description, canonical, Open Graph and Twitter cards (`src/lib/metadata.ts`). Blog posts add
+  `og:type=article` with published/modified dates and their own share image.
+- `public/og.png` share image, `public/logo.png` (512 px, used as the Organization logo) and `src/app/apple-icon.png`.
+- `public/sitemap.xml` and `public/rss.xml` are generated from the routes and `posts.json` by
+  `scripts/generate-seo-files.mjs`, which runs automatically before every build (`prebuild`). New top-level pages go in
+  that script's `pages` list. `public/robots.txt` points crawlers at the sitemap.
+- Structured data (JSON-LD, helpers in `src/lib/schema.ts`): Organization, WebSite, WebPage and SoftwareApplication (offers,
+  feature list) on `/`; FAQPage on `/pricing/`; AboutPage and ContactPage; a Service per use-case page; Blog on `/blog/`;
+  BlogPosting on every post; BreadcrumbList on every inner page.
+- Old WordPress post URLs 301 to their new `/blog/` addresses (see Pages above).
 
 ## Temporary preview on GitHub Pages
 
@@ -98,7 +123,8 @@ Vercel is the zero-config option: import the repo and deploy. Any Node host work
 ## Before launch
 
 1. **Testimonials:** all quotes are carried over word-for-word from the current site. Confirm each named customer, then add logos and names where allowed.
-2. **Blog and legal pages:** these still link to the WordPress URLs (`site.blogUrl`, `privacyUrl`, `termsUrl`). Before this site replaces merithyre.ai on the same domain, either keep WordPress on a subdomain (e.g. `blog.merithyre.ai`) and update those links, or migrate the posts.
-3. **Compliance wording:** "Built for NYC LL144 · EEOC · FEHA · EU AI Act". Have counsel approve it.
-4. **Product visuals** are illustrative HTML mockups (sample names, labelled as sample data). Add the real demo video via `demoVideo` (above) when it's ready.
-5. **Form:** set `NEXT_PUBLIC_CONTACT_ENDPOINT`.
+2. **Legal pages:** Privacy and Terms still link to the WordPress URLs (`privacyUrl`, `termsUrl`). Move them over (or keep WordPress on a subdomain) before this site replaces merithyre.ai. The blog has been migrated.
+3. **Search Console:** after launch, submit `https://merithyre.ai/sitemap.xml` and check that the old post URLs report as redirects.
+4. **Compliance wording:** "Built for NYC LL144 · EEOC · FEHA · EU AI Act". Have counsel approve it.
+5. **Product visuals** are illustrative HTML mockups (sample names, labelled as sample data). Add the real demo video via `demoVideo` (above) when it's ready.
+6. **Form:** set `NEXT_PUBLIC_CONTACT_ENDPOINT`.

@@ -11,11 +11,14 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { includedEverywhere, pricingFaqs } from "@/content/pricing";
 import { pageMetadata } from "@/lib/metadata";
+import { abs, breadcrumbSchema, graph, webPageSchema } from "@/lib/schema";
+
+const metaDescription =
+  "Simple pricing for AI recruitment automation. $99 per recruiter for staffing agencies, or $99, $199 and $299 a month for in-house teams. Full pipeline on every plan. No contract.";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Pricing",
-  description:
-    "Simple pricing for AI recruitment automation. $99 per recruiter for staffing agencies, or $99, $199 and $299 a month for in-house teams. Full pipeline on every plan. No contract.",
+  title: "Pricing: AI Recruitment Software from $99/Month",
+  description: metaDescription,
   path: "/pricing/",
 });
 
@@ -23,15 +26,22 @@ export default function PricingPage() {
   return (
     <>
       <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: pricingFaqs.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
-          })),
-        }}
+        data={graph(
+          webPageSchema({ path: "/pricing/", name: "MeritHyre pricing", description: metaDescription }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Pricing", path: "/pricing/" },
+          ]),
+          {
+            "@type": "FAQPage",
+            "@id": `${abs("/pricing/")}#faq`,
+            mainEntity: pricingFaqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          },
+        )}
       />
       <PageHero
         decor={<PricingHeroChips />}
@@ -49,11 +59,8 @@ export default function PricingPage() {
             <span className="whitespace-nowrap">no per-role fees.</span>
           </>
         }
+        after={<PricingTabs />}
       />
-
-      <section className="px-5 pb-4 sm:px-6">
-        <PricingTabs />
-      </section>
 
 
       <section className="relative px-5 py-14 sm:px-6 sm:py-20">

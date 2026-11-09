@@ -7,9 +7,12 @@ import { Glow } from "@/components/ui/decor";
 import { ContactHeroChips } from "@/components/sections/heading-chips";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbSchema, graph, webPageSchema } from "@/lib/schema";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact & Demo",
+  title: "Book a Demo or Contact MeritHyre",
+  absoluteTitle: true,
   description:
     "Book a 30-minute live demo of MeritHyre on a real role, or ask us anything. Call 650-374-4160 or email support@merithyre.ai. We reply within one business day.",
   path: "/contact-us/",
@@ -31,6 +34,20 @@ const options = [
 export default function ContactPage() {
   return (
     <>
+      <JsonLd
+        data={graph(
+          webPageSchema({
+            type: "ContactPage",
+            path: "/contact-us/",
+            name: "Contact MeritHyre",
+            description: "Book a 30-minute live demo of MeritHyre on a real role, or ask us anything.",
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Contact", path: "/contact-us/" },
+          ]),
+        )}
+      />
       <PageHero
         decor={<ContactHeroChips />}
         eyebrow="Contact"

@@ -14,6 +14,7 @@ source_sha="$(git rev-parse --short HEAD)"
 source_branch="$(git rev-parse --abbrev-ref HEAD)"
 
 rm -rf out
+node scripts/generate-seo-files.mjs
 GITHUB_PAGES=true npx next build
 touch out/.nojekyll # serve the _next/ folder as-is (skip Jekyll processing)
 

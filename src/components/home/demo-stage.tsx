@@ -50,11 +50,11 @@ export function DemoStage() {
   return (
     <div>
       <div
-        className="bg-backdrop relative aspect-[4/5] overflow-hidden rounded-[28px] border border-white/10 shadow-[0_50px_120px_-50px_rgb(0_0_0/0.9)] sm:aspect-[16/13]"
+        className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-white/25 bg-[linear-gradient(150deg,rgb(255_255_255/0.2),rgb(255_255_255/0.06)_45%,rgb(246_183_78/0.16))] shadow-[0_50px_120px_-50px_rgb(0_0_0/0.9)] backdrop-blur-md sm:aspect-[16/13]"
         onMouseEnter={() => setHovering(true)}
         onMouseLeave={() => setHovering(false)}
       >
-        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_120%,rgb(0_0_0/0.55),transparent_60%)]" />
+        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_120%,rgb(0_0_0/0.4),transparent_60%)]" />
 
         {chapters.map(({ label, Scene }, i) => (
           <div
@@ -106,7 +106,7 @@ export function DemoStage() {
           type="button"
           onClick={() => setPaused((p) => !p)}
           aria-label={paused ? "Play preview" : "Pause preview"}
-          className="grid size-10 place-items-center rounded-full border border-white/15 text-fg transition-colors hover:bg-white/[0.06]"
+          className="grid size-10 place-items-center rounded-full border border-white/25 bg-white/[0.06] text-white transition-colors hover:bg-white/[0.14]"
         >
           {paused || reducedMotion ? <Play aria-hidden className="ml-0.5 size-3.5 fill-current" /> : <Pause aria-hidden className="size-3.5 fill-current" />}
         </button>
@@ -118,14 +118,14 @@ export function DemoStage() {
             aria-pressed={i === active}
             className={cn(
               "h-10 rounded-full border px-4 text-sm font-medium transition-colors",
-              i === active ? "border-white bg-white text-[#0b0b0c]" : "border-white/15 text-fg hover:border-white/30",
+              i === active ? "border-white bg-white text-[#0b0b0c]" : "border-white/25 bg-white/[0.06] text-white hover:border-white/45 hover:bg-white/[0.12]",
             )}
           >
             {c.label}
           </button>
         ))}
       </div>
-      <p className="mt-3 text-sm text-subtle">Preview with sample data. Tap a step to jump ahead.</p>
+      <p className="mt-3 text-sm text-white/60">Preview with sample data. Tap a step to jump ahead.</p>
 
       <dialog
         ref={dialogRef}

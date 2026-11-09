@@ -19,10 +19,10 @@ function PlanCard({ plan, dark }: { plan: Plan; dark?: boolean }) {
       className={cn(
         "relative flex flex-col rounded-[22px] border p-7 transition-[translate,border-color] duration-300 hover:-translate-y-1 hover:border-white/30 sm:p-8",
         plan.featured
-          ? "border-white/25 bg-panel-2"
+          ? "border-white/30 bg-panel-2 shadow-[0_40px_90px_-50px_rgb(0_0_0/0.9)]"
           : dark
-            ? "border-white/10 bg-[linear-gradient(180deg,rgb(255_255_255/0.05),rgb(255_255_255/0.01))]"
-            : "border-white/10 bg-white/[0.02]",
+            ? "border-white/[0.14] bg-[#0e100f]/85 shadow-[0_40px_90px_-50px_rgb(0_0_0/0.9)] backdrop-blur-md"
+            : "border-white/[0.14] bg-[#0e100f]/85 shadow-[0_40px_90px_-50px_rgb(0_0_0/0.9)] backdrop-blur-md",
       )}
     >
       {plan.tag && (
@@ -59,7 +59,7 @@ function SeatCalculator() {
   const total = seats * agencyPlan.price;
   const pct = ((seats - 1) / 49) * 100;
   return (
-    <div className="flex flex-col rounded-[22px] border border-white/10 bg-white/[0.02] p-7 sm:p-8">
+    <div className="flex flex-col rounded-[22px] border border-white/[0.14] bg-[#0e100f]/85 p-7 shadow-[0_40px_90px_-50px_rgb(0_0_0/0.9)] backdrop-blur-md sm:p-8">
       <label htmlFor="seats" className="text-lg font-semibold tracking-[-0.02em] text-fg">
         How many recruiters on your desk?
       </label>
@@ -106,7 +106,7 @@ export function PricingTabs() {
   return (
     <div className="mx-auto max-w-[1180px]">
       <div className="flex justify-center">
-        <div role="tablist" aria-label="Pricing for" className="relative grid grid-cols-2 rounded-full border border-white/10 bg-white/[0.03] p-1">
+        <div role="tablist" aria-label="Pricing for" className="relative grid grid-cols-2 rounded-full border border-white/20 bg-black/25 p-1 backdrop-blur-sm">
           <span
             aria-hidden
             className={cn(
@@ -133,7 +133,7 @@ export function PricingTabs() {
               tabIndex={tab === t.id ? 0 : -1}
               className={cn(
                 "relative z-10 h-10 whitespace-nowrap rounded-full px-4 text-sm font-medium transition-colors sm:px-6",
-                tab === t.id ? "text-[#03140b]" : "text-muted hover:text-fg",
+                tab === t.id ? "text-[#03140b]" : "text-white/75 hover:text-white",
               )}
             >
               {t.label}

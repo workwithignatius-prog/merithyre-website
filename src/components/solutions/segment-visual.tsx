@@ -7,8 +7,8 @@ import { cn } from "@/lib/cn";
 export function SegmentVisual({ visual }: { visual: Segment["visual"] }) {
   return (
     <figure>
-      <div className="bg-backdrop relative overflow-hidden rounded-[28px] border border-white/10 p-6 sm:p-10">
-        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_120%,rgb(0_0_0/0.5),transparent_60%)]" />
+      <div className="relative overflow-hidden rounded-[28px] border border-white/25 bg-[linear-gradient(150deg,rgb(255_255_255/0.2),rgb(255_255_255/0.06)_45%,rgb(246_183_78/0.16))] p-6 shadow-[0_50px_120px_-50px_rgb(0_0_0/0.9)] backdrop-blur-md sm:p-10">
+        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_120%,rgb(0_0_0/0.35),transparent_60%)]" />
         <div className="relative mx-auto max-w-[420px] rounded-[20px] border border-white/10 bg-[#0e0f11]/95 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.75)]">
           <div className="border-b border-white/[0.08] px-5 py-4">
             <p className="text-xs text-white/55">Overnight run, finished before 9 AM</p>
@@ -41,7 +41,7 @@ export function SegmentVisual({ visual }: { visual: Segment["visual"] }) {
           </div>
         </div>
       </div>
-      <figcaption className="mt-3 text-center text-xs text-subtle">Product preview with sample data</figcaption>
+      <figcaption className="mt-3 text-center text-xs text-white/60">Product preview with sample data</figcaption>
     </figure>
   );
 }

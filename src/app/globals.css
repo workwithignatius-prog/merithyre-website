@@ -28,6 +28,14 @@
   --color-sun-200: #fde4b4;
   --color-sun-300: #fbcf7e;
   --color-sun-400: #f6b74e;
+  --color-sun-700: #9a5b0b;
+
+  /* Light "paper" sections: warm off-white with near-black ink */
+  --color-paper: #f4f2ec;
+  --color-paper-2: #e9e6dd;
+  --color-ink: #0f1110;
+  --color-ink-muted: #4a4d46;
+  --color-ink-subtle: #6f726a;
 
   --animate-wave: wave 1.15s ease-in-out infinite;
   --animate-shimmer: shimmer 2.6s linear infinite;
@@ -118,12 +126,108 @@
     #133a2c;
 }
 
+/*
+ * Hero light. A deep-green sky that brightens toward the product: luminous green
+ * behind the demo, teal at the top right, a sunrise-amber glow low on the right
+ * (the morning the shortlist lands). Fades into the page canvas at the bottom.
+ */
+@utility bg-hero {
+  background:
+    radial-gradient(44% 46% at 74% 30%, rgb(52 227 156 / 0.46), transparent 72%),
+    radial-gradient(46% 40% at 100% 0%, rgb(45 176 184 / 0.6), transparent 72%),
+    radial-gradient(34% 34% at 97% 70%, rgb(246 183 78 / 0.42), transparent 72%),
+    radial-gradient(50% 52% at 4% 0%, rgb(38 150 100 / 0.62), transparent 72%),
+    radial-gradient(40% 40% at 30% 62%, rgb(27 111 115 / 0.32), transparent 72%),
+    linear-gradient(180deg, #12402f 0%, #103728 40%, #0d2a1f 66%, #0b1712 86%, var(--color-canvas) 100%);
+}
+
+/* Same light for centred heroes: brightest above the headline. */
+@utility bg-hero-center {
+  background:
+    radial-gradient(46% 58% at 50% 0%, rgb(52 227 156 / 0.4), transparent 72%),
+    radial-gradient(38% 52% at 100% 12%, rgb(45 176 184 / 0.55), transparent 72%),
+    radial-gradient(32% 46% at 0% 46%, rgb(246 183 78 / 0.3), transparent 72%),
+    radial-gradient(40% 50% at 8% 0%, rgb(38 150 100 / 0.5), transparent 72%),
+    linear-gradient(180deg, #12402f 0%, #103728 44%, #0d2a1f 70%, #0b1712 88%, var(--color-canvas) 100%);
+}
+
 /* Soft page atmosphere for hero areas (no grids, no hard glows). */
 @utility bg-atmosphere {
   background:
     radial-gradient(48% 60% at 78% 18%, rgb(47 154 104 / 0.26), transparent 70%),
     radial-gradient(38% 45% at 92% 72%, rgb(231 165 82 / 0.14), transparent 70%),
     radial-gradient(42% 50% at 8% 0%, rgb(27 111 115 / 0.16), transparent 70%);
+}
+
+/* Long-form article typography (blog posts), set on the light paper sheet. */
+@layer components {
+  .article {
+    color: #34362f;
+    font-size: 17.5px;
+    line-height: 1.75;
+  }
+  .article > * + * { margin-top: 1.15em; }
+  .article h2 {
+    margin-top: 2.1em;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--color-ink);
+    scroll-margin-top: 110px;
+  }
+  .article h3 {
+    margin-top: 1.8em;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 650;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+    scroll-margin-top: 110px;
+  }
+  .article h4 { margin-top: 1.6em; font-size: 1.04rem; font-weight: 650; color: var(--color-ink); }
+  .article :is(h2, h3, h4) + * { margin-top: 0.6em; }
+  .article > :first-child { margin-top: 0; }
+  .article a {
+    color: var(--color-mh-700);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: rgb(22 101 52 / 0.35);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s, color 0.2s;
+  }
+  .article a:hover { color: #0f4a26; text-decoration-color: currentColor; }
+  .article strong { color: var(--color-ink); font-weight: 650; }
+  .article ul, .article ol { padding-left: 1.35em; }
+  .article ul { list-style: disc; }
+  .article ol { list-style: decimal; }
+  .article li + li { margin-top: 0.45em; }
+  .article li::marker { color: var(--color-mh-600); }
+  .article blockquote {
+    border-left: 3px solid var(--color-mh-500);
+    padding: 0.15em 0 0.15em 1.2em;
+    font-family: var(--font-display);
+    font-size: 1.22rem;
+    line-height: 1.5;
+    color: var(--color-ink);
+  }
+  .article blockquote > * + * { margin-top: 0.6em; }
+  .article img { width: 100%; height: auto; border-radius: 18px; }
+  .article figcaption { margin-top: 0.6em; text-align: center; font-size: 0.85rem; color: var(--color-ink-subtle); }
+  .article .table-scroll {
+    overflow-x: auto;
+    border: 1px solid rgb(0 0 0 / 0.1);
+    border-radius: 16px;
+    background: #fff;
+  }
+  .article table { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 0.92rem; line-height: 1.55; }
+  .article th { background: var(--color-paper-2); color: var(--color-ink); font-weight: 600; text-align: left; }
+  .article th, .article td { padding: 0.75em 1em; border-bottom: 1px solid rgb(0 0 0 / 0.08); vertical-align: top; }
+  .article tbody tr:last-child td { border-bottom: 0; }
+  .article code { border-radius: 6px; background: var(--color-paper-2); padding: 0.1em 0.35em; font-family: var(--font-mono); font-size: 0.9em; }
+  .article hr { margin: 2.4em 0; border: 0; border-top: 1px solid rgb(0 0 0 / 0.1); }
 }
 
 @layer components {

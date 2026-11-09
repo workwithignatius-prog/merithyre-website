@@ -138,7 +138,7 @@ export function Navbar() {
           </li>
           {links.map((l) => (
             <li key={l.label}>
-              <NavLink href={l.href} className={cn(linkCls, pathname === l.href ? "text-white after:scale-x-100" : "text-white/75 hover:text-white")}>
+              <NavLink href={l.href} className={cn(linkCls, pathname === l.href || (l.href === "/blog/" && pathname?.startsWith("/blog/")) ? "text-white after:scale-x-100" : "text-white/75 hover:text-white")}>
                 {l.label}
                 {l.sticker && (
                   <span

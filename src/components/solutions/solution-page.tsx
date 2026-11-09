@@ -3,44 +3,63 @@ import { ButtonLink } from "@/components/ui/button";
 import { Label, SectionHeading } from "@/components/ui/section-heading";
 import { Swash } from "@/components/ui/swash";
 import { PipelineSection } from "@/components/sections/pipeline-section";
-import { Quotes } from "@/components/sections/quotes";
+import { Testimonials } from "@/components/sections/testimonials";
 import { SegmentCards } from "@/components/sections/segment-cards";
 import { Stats } from "@/components/sections/stats";
 import { CtaBand } from "@/components/sections/cta-band";
-import { ResultsChips } from "@/components/sections/heading-chips";
 import { Glow } from "@/components/ui/decor";
 import { site } from "@/content/site";
 import type { Segment } from "@/content/segments";
 import { SegmentVisual } from "./segment-visual";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbSchema, graph, organizationId, webPageSchema } from "@/lib/schema";
 
 export function SolutionPage({ segment }: { segment: Segment }) {
   const lead = segment.hero.highlight.split(" ");
   const lastWord = lead.pop();
   return (
     <>
-      <section className="relative px-5 pb-16 pt-10 sm:px-6 sm:pb-24 sm:pt-16">
-        <div aria-hidden className="bg-atmosphere pointer-events-none absolute inset-x-0 -top-28 bottom-0" />
+      <JsonLd
+        data={graph(
+          webPageSchema({ path: segment.href, name: segment.meta.title, description: segment.meta.description }),
+          {
+            "@type": "Service",
+            name: segment.meta.title,
+            serviceType: "AI recruitment automation",
+            description: segment.meta.description,
+            provider: { "@id": organizationId },
+            areaServed: "US",
+            audience: { "@type": "BusinessAudience", name: segment.name },
+          },
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: segment.name, path: segment.href },
+          ]),
+        )}
+      />
+      <section className="relative px-5 pb-14 pt-10 sm:px-6 sm:pb-20 sm:pt-16">
+        <div aria-hidden className="bg-hero pointer-events-none absolute inset-x-0 -top-40 bottom-0" />
         <div className="relative mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
           <div>
-            <Label>{segment.hero.eyebrow}</Label>
-            <h1 className="mt-4 font-display text-[clamp(2.7rem,5.6vw,4.6rem)] font-bold leading-[0.98] tracking-[-0.04em] text-fg">
+            <Label className="text-mh-200">{segment.hero.eyebrow}</Label>
+            <h1 className="mt-4 font-display text-[clamp(2.7rem,5.6vw,4.6rem)] font-bold leading-[0.98] tracking-[-0.04em] text-white">
               {segment.hero.title}
               <br />
               {lead.join(" ")} <Swash>{lastWord}</Swash>
             </h1>
-            <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-muted sm:text-lg">{segment.hero.body}</p>
+            <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-white/80 sm:text-lg">{segment.hero.body}</p>
             <div className="mt-9 flex flex-wrap gap-3">
               <ButtonLink href={site.demoHref} size="lg" arrow>
                 Book a demo
               </ButtonLink>
-              <ButtonLink href="/pricing/" size="lg" variant="secondary">
+              <ButtonLink href="/pricing/" size="lg" variant="glass">
                 See pricing
               </ButtonLink>
             </div>
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/75">
               {[segment.price, "No long-term contract", "Setup in under a day"].map((t) => (
                 <li key={t} className="flex items-center gap-2">
-                  <Check aria-hidden className="size-4 text-mh-400" />
+                  <Check aria-hidden className="size-4 text-mh-300" />
                   {t}
                 </li>
               ))}
@@ -48,10 +67,7 @@ export function SolutionPage({ segment }: { segment: Segment }) {
           </div>
           <SegmentVisual visual={segment.visual} />
         </div>
-      </section>
-
-      <section className="px-5 sm:px-6">
-        <div className="mx-auto max-w-[1180px]">
+        <div className="relative mx-auto mt-16 max-w-[1180px] lg:mt-20">
           <Stats items={segment.stats} />
         </div>
       </section>
@@ -90,15 +106,7 @@ export function SolutionPage({ segment }: { segment: Segment }) {
       <PipelineSection />
 
 
-      <section className="relative px-5 py-14 sm:px-6 sm:py-20">
-        <div className="relative mx-auto max-w-[1180px]">
-          <Glow color="teal" className="-right-40 top-10 h-[440px] w-[620px]" />
-          <SectionHeading decor={<ResultsChips />} eyebrow="Customers" title="In their own words." />
-          <div className="mt-14">
-            <Quotes items={segment.quotes} />
-          </div>
-        </div>
-      </section>
+      <Testimonials eyebrow="Customers" title="In their own words." items={segment.quotes} />
 
 
       <section className="px-5 py-14 sm:px-6 sm:py-20">

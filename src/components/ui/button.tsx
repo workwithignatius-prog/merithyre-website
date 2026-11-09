@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "secondary" | "glass" | "ink" | "ghost";
 type Size = "sm" | "md" | "lg";
 
 const base =
@@ -12,6 +12,10 @@ const base =
 const variants: Record<Variant, string> = {
   primary: "bg-white text-[#0b0b0c] hover:-translate-y-0.5 hover:bg-[#ecebe6] hover:shadow-[0_14px_30px_-14px_rgb(255_255_255/0.45)]",
   secondary: "border border-white/15 text-fg hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/[0.06]",
+  // On the bright hero gradient
+  glass: "border border-white/30 bg-white/10 text-white backdrop-blur-sm hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/[0.16]",
+  // On light paper sections
+  ink: "bg-ink text-white hover:-translate-y-0.5 hover:bg-black hover:shadow-[0_14px_30px_-14px_rgb(0_0_0/0.5)]",
   ghost: "text-muted hover:text-fg",
 };
 
