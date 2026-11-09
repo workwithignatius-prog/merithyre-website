@@ -106,7 +106,7 @@ export function SolutionPage({ segment }: { segment: Segment }) {
       <PipelineSection />
 
 
-      <Testimonials eyebrow="Customers" title="In their own words." items={segment.quotes} />
+      <Testimonials eyebrow="Customers" title="In their own words." items={segment.quotes} compactChips />
 
 
       <section className="px-5 py-14 sm:px-6 sm:py-20">
