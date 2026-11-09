@@ -111,56 +111,58 @@ SHORT_NAMES = {
     "why-ai-native-beats-ai-powered-the-architecture-difference-that-changes-everything-2": "ai-native-beats-ai-powered",
 }
 
-# Meta description (120-160 chars) and card excerpt (1-2 sentences, <= ~220
-# chars), written from each post's opening paragraph.
+# Meta description (120-160 chars, written from the post's opening paragraph)
+# and card excerpt (1-2 sentences, <= ~220 chars). The post page also shows the
+# excerpt as the standfirst right above the body, which opens with the
+# WordPress dek, so excerpts summarise the post instead of repeating its opening.
 COPY = {
     "time-to-hire-vs-quality-of-hire-which-metric-should-you-actually-track": (
         "Quality-of-hire is the goal and time-to-hire is the guardrail. See what each metric tells you, where each misleads, and how to track both without a data team.",
-        "Fast hires are easy; good hires are the ones you can measure. Learn what time-to-hire and quality-of-hire each tell you, where each one misleads, and how to track both.",
+        "A side-by-side look at the two hiring metrics, the warning signs that speed is winning over quality, and a five-step way to start measuring how good your hires really are.",
     ),
     "candidate-fraud-in-hiring-spot-fake-profiles-and-proxies": (
         "Fake profiles and stand-in interviewees can reach your shortlist. Learn the red flags to watch for and how transcripts and structured scoring build evidence.",
-        "The resume looks sharp and the answers sound polished, yet weeks after the offer the work doesn’t match. Here’s how to spot fake profiles and proxy interviews early.",
+        "Deepfakes, proxy interviewees and invented profiles are reaching interview stages. Learn the warning signs and build a layered verification process that holds up.",
     ),
     "ai-resume-screening-vs-keyword-matching-which-wins": (
         "Keyword filters miss strong candidates, while AI screening reads context. See where each method wins and how adjustable weights improve your shortlist.",
-        "A single job posting can draw hundreds of applications, and software decides which ones get a human look. Compare keyword matching with AI resume screening.",
+        "Exact-word filters and context-aware AI each have a place in screening. Compare how they handle synonyms, adjacent skills and fairness, and when a hybrid works best.",
     ),
     "how-to-write-job-descriptions-that-ai-can-screen-against": (
         "Screening tools read your job description first and rank every resume against it. Learn how to write job descriptions that AI can parse and match accurately.",
-        "AI screening reads your job description before it reads a single resume, so a messy JD means messy scores. Use this framework to write JDs that AI can screen against.",
+        "A practical framework for AI-ready job descriptions: a shared taxonomy, a three-tier qualification hierarchy and outcome-based duties, plus a before-and-after rewrite.",
     ),
     "who-owns-candidate-data-in-ai-recruiting-contract-clauses-to-check": (
         "Whoever negotiates the data clauses controls candidate data. See who owns resumes, recordings and scores in AI hiring, and which contract terms to check.",
-        "Whoever negotiates the data clauses controls candidate data, and in most AI hiring deals nobody negotiates them. Here are the contract clauses to check before you sign.",
+        "Resumes, recordings, transcripts and match scores all flow to your AI recruiting vendor. These eight contract clauses decide who controls that data once you sign.",
     ),
     "structured-interview-scorecards_-templates-and-best-practices-guide": (
         "Most hiring teams run interviews, but few can explain why one candidate scored higher. Build structured scorecards with anchored ratings and a free template.",
-        "Most hiring teams already run interviews, but far fewer can explain why one candidate scored higher than another. Structured scorecards turn gut feel into defensible decisions.",
+        "What goes into a strong interview scorecard, from role outcomes and weighted competencies to anchored rating scales, with a free software engineer template to adapt.",
     ),
     "ai-recruitment-automation-the-complete-guide-to-fixing-hiring-bottlenecks": (
         "Application volume keeps climbing while recruiter hours stay fixed. See where hiring actually slows down and how AI-native automation removes each bottleneck.",
-        "Application volume keeps climbing while the hours in a recruiter’s day stay fixed. This guide shows where hiring slows down and how AI-native automation removes the bottlenecks.",
+        "The capabilities that matter, use cases by team, how to evaluate platforms, a phased rollout plan and the KPIs that prove AI-native recruitment automation is working.",
     ),
     "nyc-local-law-144-compliance-checklist-for-ai-hiring-tools-2026": (
         "Your software vendor doesn’t handle Local Law 144 for you. Cover AEDT scope, bias audits, the public summary, candidate notice and penalties, step by step.",
-        "Many hiring teams assume their software vendor handles NYC Local Law 144. It doesn’t: the bias audit, public summary and candidate notice are the employer’s job.",
+        "Five steps to meet New York City’s AI hiring law: map your tools, commission an independent bias audit, publish the summary, notify candidates and handle data requests.",
     ),
     "ai-native-vs-bolt-on-ai-recruiting-whats-actually-different": (
         "AI-powered and AI-native pitches sound alike, but only one is built to run hiring end to end. Compare architecture, hidden costs and handoffs to recruiters.",
-        "One vendor says AI-powered, another says AI-native, and both promise faster screening and smarter shortlists. Here’s what actually separates them, and why it matters.",
+        "Bolt-on AI adds features to a legacy ATS; AI-native software is built around AI from the start. Here’s how the two differ in architecture, workflow, hidden costs and handoffs.",
     ),
     "from-job-order-to-ranked-shortlist-the-ai-native-staffing-workflow-us-agencies-are-adopting": (
         "A job order lands and a recruiter opens fifteen tabs and a spreadsheet. See how AI-native staffing workflows deliver a ranked shortlist in hours, not weeks.",
-        "A job order comes in, the clock starts, and a recruiter opens fifteen tabs at once. Here’s the AI-native workflow US staffing agencies are adopting to reach a ranked shortlist.",
+        "How AI-native staffing workflows take a job order through sourcing, screening and ranking before a recruiter steps in, and why US agencies are making the switch now.",
     ),
     "every-recruiter-has-felt-it-you-fill-the-role-and-three-months-later-youre-starting-the-exact-same-search-from-zero": (
         "When a filled role reopens, most teams restart the search with nothing. Learn why linear hiring funnels forget everything and how a loop-based model remembers.",
-        "The req closes, the offer goes out, and eleven weeks later the same role is back on your desk with no memory of the last search. Here’s why, and what a hiring loop changes.",
+        "Linear hiring funnels forget everything once a role closes, so every repeat search starts cold. Here’s what a loop-based model keeps, from runner-up candidates to post-hire data.",
     ),
     "why-ai-native-beats-ai-powered-the-architecture-difference-that-changes-everything-2": (
         "Most recruiting tools claim to be AI-powered, but bolting AI onto old software isn’t the same as making AI the operating model. Here’s why that matters.",
-        "Most recruitment tools claim to be AI-powered. But adding AI features to existing software is very different from building a platform where AI is the operating model.",
+        "AI-powered tools speed up the old recruiting workflow; AI-native platforms replace it. See what that architecture difference means for recruiters, compliance and your ATS.",
     ),
 }
 
@@ -240,14 +242,14 @@ TOC_HEADING = re.compile(r"^(in this article|table of contents|contents|on this 
 HEADING_RE = re.compile(r"^h[1-6]$")
 
 WS_RE = re.compile(r"\s+")
-ZERO_WIDTH_RE = re.compile("[​‌‍⁠﻿]")
+ZERO_WIDTH_RE = re.compile("[\u200b\u200c\u200d\u2060\ufeff]")
 UPLOAD_SUFFIX_RE = re.compile(
     r"^(?P<base>.+?)(?P<edit>-e\d{10,})?(?P<scaled>-scaled)?(?P<size>-\d+x\d+)?(?P<ext>\.[A-Za-z0-9]+)$"
 )
 
 
-class ImportError_(Exception):
-    pass
+class ConversionError(Exception):
+    """Input that the importer cannot convert safely."""
 
 
 @dataclass
@@ -356,10 +358,10 @@ def fetch_upload(ctx: Context, url: str) -> bytes | None:
     """Download a wp-content/uploads file (cached). Returns None on 404."""
     parts = urlsplit(url)
     if parts.scheme not in ("http", "https") or parts.hostname not in SITE_HOSTS or not parts.path.startswith(UPLOADS_PATH):
-        raise ImportError_(f"refusing to download a non-upload URL: {url}")
+        raise ConversionError(f"refusing to download a non-upload URL: {url}")
     rel = parts.path[len(UPLOADS_PATH):]
     if ".." in rel or not re.fullmatch(r"[A-Za-z0-9._/-]+", rel):
-        raise ImportError_(f"unexpected upload path: {url}")
+        raise ConversionError(f"unexpected upload path: {url}")
     cache_file = ctx.cache_dir / rel.replace("/", "__")
     missing_marker = cache_file.with_name(cache_file.name + ".404")
     if cache_file.exists():
@@ -385,12 +387,12 @@ def fetch_upload(ctx: Context, url: str) -> bytes | None:
                 raise
         time.sleep(2 * (attempt + 1))
     if data is None or len(data) > MAX_DOWNLOAD_BYTES:
-        raise ImportError_(f"download failed or too large: {url}")
+        raise ConversionError(f"download failed or too large: {url}")
     try:
         with Image.open(io.BytesIO(data)) as probe:
             probe.verify()
     except Exception as err:  # noqa: BLE001 - any decoder error means "not an image"
-        raise ImportError_(f"not a valid image: {url} ({err})") from err
+        raise ConversionError(f"not a valid image: {url} ({err})") from err
     ctx.cache_dir.mkdir(parents=True, exist_ok=True)
     fd, tmp = tempfile.mkstemp(dir=ctx.cache_dir)
     with os.fdopen(fd, "wb") as fh:
@@ -418,7 +420,7 @@ def pick_source(ctx: Context, slug: str, candidates: list, expected_ratio: float
         if expected_ratio is None or abs((w / h) - expected_ratio) / expected_ratio <= 0.01:
             return url, data
         ctx.log(f"skipping {url}: aspect ratio {w}x{h} differs from the displayed image")
-    raise ImportError_(f"{slug}: no usable source among {seen}")
+    raise ConversionError(f"{slug}: no usable source among {seen}")
 
 
 def write_web_image(ctx: Context, data: bytes, base_name: str, source_url: str) -> tuple:
@@ -450,7 +452,7 @@ def write_web_image(ctx: Context, data: bytes, base_name: str, source_url: str) 
     file_name = base_name + ext
     previous = ctx.written_images.get(file_name)
     if previous and previous != source_url:
-        raise ImportError_(f"image name clash: {file_name} for {previous} and {source_url}")
+        raise ConversionError(f"image name clash: {file_name} for {previous} and {source_url}")
     ctx.written_images[file_name] = source_url
     OUT_IMAGES.mkdir(parents=True, exist_ok=True)
     target = OUT_IMAGES / file_name
@@ -487,9 +489,10 @@ def rewrite_href(ctx: Context, slug: str, href: str) -> str | None:
     if parts.scheme and parts.scheme not in ("http", "https"):
         ctx.warn(slug, f"dropped link with unsupported scheme: {href}")
         return None
-    if parts.scheme and parts.hostname and parts.hostname.lower() not in SITE_HOSTS:
-        return href  # external: unchanged
-    if not parts.scheme and not href.startswith("/"):
+    host = (parts.hostname or "").lower()
+    if host and host not in SITE_HOSTS:
+        return href  # external (including protocol-relative //host/...): unchanged
+    if not host and not href.startswith("/"):
         ctx.warn(slug, f"dropped relative link: {href}")
         return None
 
@@ -813,7 +816,7 @@ def sanitize(soup, root: Tag) -> set:
     return unknown
 
 
-def apply_heading_role(soup, h: Tag) -> str | None:
+def apply_heading_role(soup, h: Tag) -> str:
     role = h.get("data-mh-role") or ("h2" if h.name in ("h1", "h2") else "h3" if h.name in ("h3", "h4") else "sub")
     h.attrs = {}
     if role in ("dek", "label"):
@@ -1002,7 +1005,7 @@ def wrap_top_level_inline(soup, root: Tag) -> None:
         flush()
 
 
-def normalize_heading_levels(root: Tag) -> list:
+def normalize_heading_levels(root: Tag) -> tuple:
     """Resolve sub-label levels, never skip a level, give every h2 a unique id.
 
     h5/h6 sub-labels become h4 when they follow an h3 in the same h2 section,
@@ -1090,7 +1093,7 @@ def auto_copy(text: str, low: int, high: int) -> str:
 def convert_post(ctx: Context, post: dict) -> dict:
     slug = post["slug"]
     if not re.fullmatch(r"[a-z0-9_-]+", slug):
-        raise ImportError_(f"unexpected slug: {slug!r}")
+        raise ConversionError(f"unexpected slug: {slug!r}")
     print(f"- {slug}")
     notes = []
     soup = BeautifulSoup(post["content"]["rendered"], "html.parser")
@@ -1127,7 +1130,7 @@ def convert_post(ctx: Context, post: dict) -> dict:
     elif media:
         candidates, ratio, wp_alt = [featured_url], featured_ratio, media.get("alt_text", "")
     else:
-        raise ImportError_(f"{slug}: no featured image and no lead image")
+        raise ConversionError(f"{slug}: no featured image and no lead image")
     if post.get("featured_media") == SHARED_FEATURED_MEDIA and lead is None:
         notes.append(f"no lead image in the body: reusing shared featured image {SHARED_FEATURED_MEDIA}")
     cover_url, cover_data = pick_source(ctx, slug, candidates, ratio)
@@ -1206,7 +1209,7 @@ def convert_post(ctx: Context, post: dict) -> dict:
         siblings = [c for c in parent.contents if not (isinstance(c, NavigableString) and not plain(str(c)))]
         if parent.name == "p" and siblings == [img]:
             parent.name = "figure"
-        elif parent.name not in ("figure",) and parent is root:
+        elif parent is root:
             figure = soup.new_tag("figure")
             img.wrap(figure)
         ctx.log(f"inline image {src} -> {public_src}")
@@ -1331,5 +1334,5 @@ def main() -> int:
 if __name__ == "__main__":
     try:
         sys.exit(main())
-    except ImportError_ as err:
+    except ConversionError as err:
         sys.exit(f"error: {err}")

@@ -30,7 +30,7 @@ export const segments: Segment[] = [
     meta: {
       title: "AI Recruiting for Staffing Agencies",
       description:
-        "Submit faster and win more mandates. MeritHyre sources, screens and interviews candidates overnight so recruiters spend the day submitting. $99 per recruiter per month.",
+        "Submit faster and win more mandates. MeritHyre sources, screens and interviews candidates overnight so recruiters spend the day submitting. $99/recruiter/month.",
     },
     hero: {
       eyebrow: "For staffing agencies",
@@ -252,7 +252,7 @@ export const segments: Segment[] = [
     meta: {
       title: "AI Hiring for Startups Without a Recruiter",
       description:
-        "Hire well before you have a recruiter. MeritHyre writes the JD, screens applicants, runs first interviews and delivers a ranked shortlist. $99/month, cancel any time.",
+        "Hire well before you have a recruiter. MeritHyre writes the JD, screens applicants, runs first interviews and ranks a shortlist. $99/month, cancel any time.",
     },
     hero: {
       eyebrow: "For startups",

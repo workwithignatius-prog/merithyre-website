@@ -14,7 +14,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { abs, breadcrumbSchema, graph, webPageSchema } from "@/lib/schema";
 
 const metaDescription =
-  "Simple pricing for AI recruitment automation. $99 per recruiter for staffing agencies, or $99, $199 and $299 a month for in-house teams. Full pipeline on every plan. No contract.";
+  "AI recruitment automation from $99/month. $99 per recruiter for agencies, or $99 to $299 a month for in-house teams. Full pipeline on every plan, no contract.";
 
 export const metadata: Metadata = pageMetadata({
   title: "Pricing: AI Recruitment Software from $99/Month",
