@@ -1,69 +1,123 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import { Hero } from "@/components/home/hero";
+import { Features } from "@/components/home/features";
+import { StackStrip } from "@/components/sections/stack-strip";
+import { PipelineTrack } from "@/components/sections/pipeline-track";
+import { SegmentCards } from "@/components/sections/segment-cards";
+import { Stats } from "@/components/sections/stats";
+import { Quotes } from "@/components/sections/quotes";
+import { Compliance } from "@/components/sections/compliance";
+import { CtaBand } from "@/components/sections/cta-band";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { JsonLd } from "@/components/seo/json-ld";
+import { homeQuotes } from "@/content/testimonials";
+import { agencyPlan, inHousePlans } from "@/content/pricing";
+import { site } from "@/content/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export default function Home() {
+export const metadata: Metadata = pageMetadata({
+  title: "MeritHyre | AI Recruitment Automation Platform",
+  absoluteTitle: true,
+  description: site.description,
+  path: "/",
+});
+
+const homeStats = [
+  { value: "Hours", label: "from job post to ranked shortlist" },
+  { value: "0", label: "CVs read by hand" },
+  { value: "24/7", label: "AI interviews, nothing to schedule" },
+  { value: "100%", label: "of advancements approved by a person" },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": `${site.url}/#organization`,
+              name: site.name,
+              url: site.url,
+              email: site.contact.email,
+              telephone: "+1-650-374-4160",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "22693 Hesperian Blvd Suite #205",
+                addressLocality: "Hayward",
+                addressRegion: "CA",
+                postalCode: "94541",
+                addressCountry: "US",
+              },
+              sameAs: Object.values(site.socials),
+            },
+            {
+              "@type": "SoftwareApplication",
+              name: site.name,
+              applicationCategory: "BusinessApplication",
+              operatingSystem: "Web",
+              description: site.description,
+              offers: [agencyPlan, ...inHousePlans].map((p) => ({
+                "@type": "Offer",
+                name: p.name,
+                price: String(p.price),
+                priceCurrency: "USD",
+                description: p.unit,
+              })),
+            },
+          ],
+        }}
+      />
+      <Hero />
+      <StackStrip />
+
+      <section id="how-it-works" className="px-5 py-20 sm:px-6 sm:py-28">
+        <div className="mx-auto max-w-[1200px]">
+          <SectionHeading
+            eyebrow="How it works"
+            title={
+              <>
+                Seven stages. AI runs six.
+                <br className="hidden sm:inline" /> You make the call.
+              </>
+            }
+            body="From job post to decision-ready report, without a single CV read by hand."
+          />
+          <div className="mt-16">
+            <PipelineTrack />
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <Features />
+
+      <section className="px-5 py-20 sm:px-6 sm:py-28">
+        <div className="mx-auto max-w-[1200px]">
+          <SectionHeading
+            eyebrow="Solutions"
+            title="Built for teams that hire seriously."
+            body="Same pipeline, tuned to how your team hires."
+          />
+          <div className="mt-14">
+            <SegmentCards />
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="px-5 py-20 sm:px-6 sm:py-28">
+        <div className="mx-auto max-w-[1200px]">
+          <SectionHeading eyebrow="Results" title="Recruiting teams that made the switch." />
+          <div className="mt-14 space-y-4">
+            <Stats items={homeStats} />
+            <Quotes items={homeQuotes} />
+          </div>
+        </div>
+      </section>
+
+      <Compliance />
+      <CtaBand />
+    </>
   );
 }
