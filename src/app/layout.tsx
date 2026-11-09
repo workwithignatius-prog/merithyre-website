@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   applicationName: site.name,
   openGraph: { type: "website", siteName: site.name, images: [ogImage] },
   twitter: { card: "summary_large_image", images: [ogImage.url] },
+  // Keep the temporary GitHub Pages preview out of search results.
+  ...(process.env.GITHUB_PAGES === "true" && { robots: { index: false, follow: false } }),
 };
 
 export const viewport: Viewport = {

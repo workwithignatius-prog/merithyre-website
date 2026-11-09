@@ -61,8 +61,22 @@ Defined in `src/app/globals.css` (Tailwind v4 `@theme`).
 
 - Per-page title, description, canonical and Open Graph (`src/lib/metadata.ts`)
 - `public/og.png` share image
-- `sitemap.xml` and `robots.txt`
+- `public/sitemap.xml` and `public/robots.txt`: static files, so they work in every build mode. Add new pages to the sitemap by hand.
 - Structured data: Organization and SoftwareApplication with offers on `/`, FAQPage on `/pricing/`
+
+## Temporary preview on GitHub Pages
+
+```bash
+npm run deploy:pages
+```
+
+This builds a static export and force-pushes it to the `gh-pages` branch. That branch holds build output only.
+
+- The build sets `GITHUB_PAGES=true`, which serves the site under `/merithyre-website/`, adds noindex tags and turns off redirects.
+- **One-time setup:** go to Settings → Pages → Build and deployment. Set Source to **Deploy from a branch** and Branch to **gh-pages** with folder **/ (root)**.
+- **URL:** https://workwithignatius-prog.github.io/merithyre-website/
+- Pages on a **private** repo needs a paid GitHub plan (Pro or Team). On the Free plan the repo must be public.
+- The Pages site itself is visible to anyone with the link. The noindex tags keep it out of search engines.
 
 ## Deploy
 
