@@ -20,6 +20,14 @@ export const site = {
   privacyUrl: "https://merithyre.ai/privacy-policy/",
   termsUrl: "https://merithyre.ai/terms-of-service/",
   demoHref: "/contact-us/?topic=demo",
+  /**
+   * Product demo video for the homepage hero. Fill in ONE of these and the
+   * "Watch the demo" button plays it; while both are empty it shows a
+   * "coming soon / book a live demo" message.
+   *  - src:      a direct MP4/WebM URL (e.g. "/demo.mp4" in /public, or a CDN link)
+   *  - embedUrl: a YouTube / Vimeo / Loom embed URL (e.g. "https://www.youtube.com/embed/VIDEO_ID")
+   */
+  demoVideo: { src: "", embedUrl: "" } as { src: string; embedUrl: string },
   // Hard-coded on purpose: reading the clock during prerender breaks static rendering
   // under cacheComponents. Bump once a year.
   copyrightYear: 2026,

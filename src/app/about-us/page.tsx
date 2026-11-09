@@ -4,6 +4,7 @@ import { PageHero } from "@/components/sections/page-hero";
 import { CtaBand } from "@/components/sections/cta-band";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { LogoMark } from "@/components/layout/logo";
+import { Swash } from "@/components/ui/swash";
 import { aboutStats, principles } from "@/content/about";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -21,9 +22,9 @@ export default function AboutPage() {
         eyebrow="About MeritHyre"
         title={
           <>
-            <span className="text-gradient">Built by recruiters.</span>
+            Built by recruiters.
             <br />
-            <span className="text-gradient-brand">Not by engineers.</span>
+            <Swash>Not by engineers.</Swash>
           </>
         }
         body="MeritHyre was founded by a team that spent 20 years running a staffing and recruiting agency. We lived the problem before we built the solution."
@@ -34,7 +35,7 @@ export default function AboutPage() {
           {aboutStats.map((s, i) => (
             <div key={s.label} className={i > 0 ? "border-t border-white/[0.07] p-7 sm:border-l sm:border-t-0" : "p-7"}>
               <dt className="sr-only">{s.label}</dt>
-              <dd className="text-gradient-brand text-[clamp(2rem,4vw,2.8rem)] font-semibold leading-none tracking-[-0.045em]">{s.value}</dd>
+              <dd className="font-display text-[clamp(2.1rem,4vw,2.9rem)] font-bold leading-none tracking-[-0.04em] text-fg">{s.value}</dd>
               <dd className="mt-3 text-sm text-muted">{s.label}</dd>
             </div>
           ))}
@@ -42,7 +43,7 @@ export default function AboutPage() {
       </section>
 
       <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-12 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-12 lg:grid-cols-2">
           <SectionHeading align="left" eyebrow="Our origin" title="We didn't read about the problem. We lived it." />
           <div className="reveal space-y-5 text-[17px] leading-relaxed text-muted">
             <p>
@@ -61,12 +62,12 @@ export default function AboutPage() {
       </section>
 
       <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="reveal relative mx-auto max-w-[1200px] overflow-hidden rounded-[28px] border border-white/10 bg-panel px-6 py-16 sm:px-14 sm:py-20">
+        <div className="reveal relative mx-auto max-w-[1180px] overflow-hidden rounded-[28px] border border-white/10 bg-panel px-6 py-16 sm:px-14 sm:py-20">
           <div aria-hidden className="absolute -right-40 -top-40 size-[520px] rounded-full bg-[radial-gradient(closest-side,rgb(52_227_156/0.18),transparent)] blur-2xl" />
           <div className="relative grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <p className="text-sm font-medium text-mh-300">Our mission</p>
-              <h2 className="text-gradient mt-4 text-[clamp(2rem,4.4vw,3.4rem)] font-semibold leading-[1.02] tracking-[-0.045em]">
+              <h2 className="mt-3 font-display text-[clamp(2.1rem,4.4vw,3.4rem)] font-bold leading-[1.02] tracking-[-0.035em] text-fg">
                 Make the decision.
                 <br />
                 Not the process.
@@ -82,7 +83,7 @@ export default function AboutPage() {
       </section>
 
       <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-[1180px]">
           <SectionHeading
             eyebrow="Our category"
             title="We're not an ATS. Keep yours."
@@ -94,7 +95,7 @@ export default function AboutPage() {
               <p className="mt-1.5 font-semibold text-fg">LinkedIn · Indeed · more</p>
             </div>
             <ArrowRight aria-hidden className="mx-auto size-5 rotate-90 text-mh-400 sm:rotate-0" />
-            <div className="flex flex-1 flex-col items-center rounded-2xl border border-mh-400/40 bg-mh-400/[0.08] p-5 shadow-[0_0_50px_-15px_rgb(52_227_156/0.6)]">
+            <div className="bg-backdrop flex flex-1 flex-col items-center rounded-2xl p-5">
               <LogoMark />
               <p className="mt-2 font-semibold text-fg">MeritHyre</p>
             </div>
@@ -108,7 +109,7 @@ export default function AboutPage() {
       </section>
 
       <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-[1180px]">
           <SectionHeading eyebrow="What we believe" title="The principles we build by." />
           <ol className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {principles.map((p, i) => (
@@ -125,7 +126,9 @@ export default function AboutPage() {
       <CtaBand
         title={
           <>
-            Start hiring. <span className="text-gradient-brand">Today.</span>
+            Start hiring.
+            <br />
+            Today.
           </>
         }
         body="A 30-minute demo on a real role, from job post to AI-interviewed shortlist."

@@ -2,7 +2,7 @@
 
 Marketing site for [merithyre.ai](https://merithyre.ai): AI-native recruitment automation.
 
-**Stack:** Next.js 16 (App Router, Turbopack) · React 19 · Tailwind CSS v4 · TypeScript · Geist font · Lucide icons.
+**Stack:** Next.js 16 (App Router, Turbopack) · React 19 · Tailwind CSS v4 · TypeScript · Bricolage Grotesque + Geist fonts · Lucide icons.
 Every page is statically prerendered.
 
 ## Run it
@@ -44,11 +44,23 @@ All copy lives in `src/content/`, separate from layout:
 
 Defined in `src/app/globals.css` (Tailwind v4 `@theme`).
 
-- **Canvas** `#060708` near-black, with glass cards and hairline borders
-- **Brand green** `mh-*`, based on the logo green `#166534` and pushed luminous (`#34e39c`) for dark UI
-- **Amber** is reserved for moments where a **person** decides (shortlist gate, approvals, "held for review"). Green means the AI runs that stage.
-- **Type:** Geist Sans (local files, so builds work offline)
-- **Motion:** CSS-only. Scroll reveals use `animation-timeline: view()` as progressive enhancement, so content is never hidden without support. Everything respects `prefers-reduced-motion`.
+- **Canvas** `#09090a`: a warm near-black with plain panels and hairline borders. No grid meshes, glowing pills or gradient-filled text.
+- **Brand green** `mh-*` is the logo green `#166534`, pushed luminous (`#34e39c`) for dark UI.
+- **Amber** `sun-*` is reserved for moments where a **person** decides (shortlist gate, approvals, "held for review"). Green means the AI runs that stage.
+- **Gradient** appears in two deliberate places:
+  - `bg-backdrop`: the green → teal → sunrise-amber card that products sit on.
+  - `<Swash>`: the hand-drawn underline that runs from green (AI) to amber (human).
+  - `bg-atmosphere` adds a soft glow behind hero areas.
+- **Type:** Bricolage Grotesque for headlines (`font-display`, in `src/fonts/`, OFL) and Geist for UI and body. Both are local files, so builds work offline.
+- **Motion:** CSS-first. Covers the announcement marquee, the demo preview, the underline draw-in and scroll reveals (`animation-timeline: view()`, progressive enhancement). Everything respects `prefers-reduced-motion`.
+
+## Homepage demo video
+
+The hero's right side is a product-demo video slot (`src/components/home/demo-stage.tsx`).
+- **Until there's a video:** it plays a silent 4-step product preview with chapter chips and a pause button. "Watch the product demo" opens a "coming soon, book a live demo" dialog.
+- **To use a real video:** set **one** value in `src/content/site.ts` → `demoVideo`. Use `src` for an MP4/WebM file (e.g. `/demo.mp4` in `public/`) or `embedUrl` for a YouTube, Vimeo or Loom embed link.
+
+The scrolling announcement bar is in `src/components/layout/announcement.tsx`.
 
 ## Contact form
 
@@ -87,5 +99,5 @@ Vercel is the zero-config option: import the repo and deploy. Any Node host work
 1. **Testimonials:** all quotes are carried over word-for-word from the current site. Confirm each named customer, then add logos and names where allowed.
 2. **Blog and legal pages:** these still link to the WordPress URLs (`site.blogUrl`, `privacyUrl`, `termsUrl`). Before this site replaces merithyre.ai on the same domain, either keep WordPress on a subdomain (e.g. `blog.merithyre.ai`) and update those links, or migrate the posts.
 3. **Compliance wording:** "Built for NYC LL144 · EEOC · FEHA · EU AI Act". Have counsel approve it.
-4. **Product visuals** are illustrative HTML mockups (sample names, labelled as illustrative). Swap in real screenshots or a demo video when ready.
+4. **Product visuals** are illustrative HTML mockups (sample names, labelled as sample data). Add the real demo video via `demoVideo` (above) when it's ready.
 5. **Form:** set `NEXT_PUBLIC_CONTACT_ENDPOINT`.

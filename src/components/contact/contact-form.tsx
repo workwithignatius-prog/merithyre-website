@@ -83,7 +83,7 @@ export function ContactForm() {
   if (status === "sent") {
     return (
       <div role="status" className="flex min-h-[520px] flex-col items-center justify-center rounded-[22px] border border-white/10 bg-white/[0.02] p-10 text-center">
-        <span className="grid size-14 place-items-center rounded-full border border-mh-400/40 bg-mh-400/10 text-mh-300 shadow-[0_0_40px_-10px_rgb(52_227_156/0.8)]">
+        <span className="grid size-14 place-items-center rounded-full bg-mh-400/15 text-mh-300">
           <CheckCircle2 aria-hidden className="size-7" />
         </span>
         <h2 className="mt-6 text-2xl font-semibold tracking-[-0.03em] text-fg">Thanks, {firstName}.</h2>
@@ -178,7 +178,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="group mt-7 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-mh-400 text-base font-medium text-[#03140b] shadow-[0_0_0_1px_rgb(52_227_156/0.55),0_12px_40px_-12px_rgb(52_227_156/0.75)] transition-colors hover:bg-mh-300 disabled:opacity-70"
+        className="group mt-7 inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-full bg-white text-base font-medium text-[#0b0b0c] transition-colors hover:bg-[#e9e8e3] disabled:opacity-70"
       >
         {status === "sending" ? (
           <>

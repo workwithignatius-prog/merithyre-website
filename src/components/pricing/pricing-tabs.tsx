@@ -19,14 +19,14 @@ function PlanCard({ plan, dark }: { plan: Plan; dark?: boolean }) {
       className={cn(
         "relative flex flex-col rounded-[22px] border p-7 sm:p-8",
         plan.featured
-          ? "border-mh-400/40 bg-[linear-gradient(180deg,rgb(52_227_156/0.09),rgb(255_255_255/0.015)_45%)] shadow-[0_0_60px_-20px_rgb(52_227_156/0.5)]"
+          ? "border-white/25 bg-panel-2"
           : dark
             ? "border-white/10 bg-[linear-gradient(180deg,rgb(255_255_255/0.05),rgb(255_255_255/0.01))]"
             : "border-white/10 bg-white/[0.02]",
       )}
     >
       {plan.tag && (
-        <span className="absolute -top-3 left-7 rounded-full bg-mh-400 px-3 py-1 text-[11px] font-semibold text-[#03140b]">{plan.tag}</span>
+        <span className="absolute -top-3 left-7 rotate-[-3deg] rounded-md bg-mh-400 px-2.5 py-1 text-[11px] font-bold text-[#062012]">{plan.tag}</span>
       )}
       <h3 className="text-lg font-semibold tracking-[-0.02em] text-fg">{plan.name}</h3>
       <p className="mt-5 flex items-baseline gap-1.5">
@@ -72,18 +72,19 @@ function SeatCalculator() {
           value={seats}
           onChange={(e) => setSeats(Number(e.target.value))}
           aria-describedby="seat-total"
-          className="h-2 flex-1 cursor-pointer appearance-none rounded-full accent-mh-400 [&::-moz-range-thumb]:size-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-mh-400 [&::-moz-range-thumb]:bg-canvas [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-mh-400 [&::-webkit-slider-thumb]:bg-canvas [&::-webkit-slider-thumb]:shadow-[0_0_14px_rgb(52_227_156/0.7)]"
+          className="h-2 flex-1 cursor-pointer appearance-none rounded-full accent-mh-400 [&::-moz-range-thumb]:size-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-mh-400 [&::-moz-range-thumb]:bg-canvas [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-mh-400 [&::-webkit-slider-thumb]:bg-canvas"
           style={{ background: `linear-gradient(90deg, #34e39c ${pct}%, rgb(255 255 255 / 0.1) ${pct}%)` }}
         />
         <output htmlFor="seats" className="grid h-10 min-w-12 place-items-center rounded-xl border border-white/10 bg-white/[0.04] px-3 text-base font-semibold tabular-nums text-fg">
           {seats}
         </output>
       </div>
-      <div id="seat-total" aria-live="polite" className="mt-8 rounded-2xl border border-mh-400/25 bg-mh-400/[0.07] p-6">
-        <p className="text-gradient-brand text-[46px] font-semibold leading-none tracking-[-0.05em] tabular-nums">
+      <div id="seat-total" aria-live="polite" className="bg-backdrop relative mt-8 overflow-hidden rounded-2xl p-6">
+        <div aria-hidden className="absolute inset-0 bg-black/45" />
+        <p className="relative font-display text-[48px] font-bold leading-none tracking-[-0.04em] tabular-nums text-white">
           ${total.toLocaleString("en-US")}
         </p>
-        <p className="mt-2 text-sm text-muted">
+        <p className="relative mt-2 text-sm text-white/80">
           per month · ${agencyPlan.price} × {seats} recruiter{seats === 1 ? "" : "s"}
         </p>
       </div>
@@ -103,13 +104,13 @@ export function PricingTabs() {
   const [tab, setTab] = useState<TabId>("agency");
 
   return (
-    <div className="mx-auto max-w-[1200px]">
+    <div className="mx-auto max-w-[1180px]">
       <div className="flex justify-center">
         <div role="tablist" aria-label="Pricing for" className="relative grid grid-cols-2 rounded-full border border-white/10 bg-white/[0.03] p-1">
           <span
             aria-hidden
             className={cn(
-              "absolute inset-y-1 left-1 w-[calc(50%-4px)] rounded-full bg-mh-400 shadow-[0_8px_30px_-8px_rgb(52_227_156/0.8)] transition-transform duration-300",
+              "absolute inset-y-1 left-1 w-[calc(50%-4px)] rounded-full bg-white transition-transform duration-300",
               tab === "inhouse" && "translate-x-full",
             )}
           />

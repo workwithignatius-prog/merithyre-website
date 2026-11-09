@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PricingTabs } from "@/components/pricing/pricing-tabs";
 import { PageHero } from "@/components/sections/page-hero";
+import { Swash } from "@/components/ui/swash";
 import { Faq } from "@/components/sections/faq";
 import { CtaBand } from "@/components/sections/cta-band";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -33,9 +34,9 @@ export default function PricingPage() {
         eyebrow="Pricing"
         title={
           <>
-            <span className="text-gradient">Simple pricing.</span>
+            Simple pricing.
             <br />
-            <span className="text-gradient-brand">Serious hiring.</span>
+            <Swash>Serious hiring.</Swash>
           </>
         }
         body={
@@ -51,7 +52,7 @@ export default function PricingPage() {
       </section>
 
       <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-[1180px]">
           <SectionHeading eyebrow="Every plan" title="The whole pipeline. On every plan." />
           <ul className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
             {includedEverywhere.map((f) => (
@@ -70,7 +71,7 @@ export default function PricingPage() {
       </section>
 
       <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+        <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
           <SectionHeading
             align="left"
             eyebrow="FAQ"

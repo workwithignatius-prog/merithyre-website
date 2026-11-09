@@ -1,11 +1,22 @@
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Announcement } from "@/components/layout/announcement";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { SwashDefs } from "@/components/ui/swash";
 import { site } from "@/content/site";
 import { ogImage } from "@/lib/metadata";
 import "./globals.css";
+
+// Display face for headlines (OFL, see src/fonts/OFL-bricolage-grotesque.txt).
+const bricolage = localFont({
+  src: "../fonts/bricolage-grotesque-variable.woff2",
+  variable: "--font-bricolage",
+  weight: "200 800",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -22,20 +33,26 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#060708",
+  themeColor: "#09090a",
   colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${GeistSans.variable} ${GeistMono.variable} ${bricolage.variable}`}
+    >
       <body className="grain flex min-h-dvh flex-col">
+        <SwashDefs />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-mh-400 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-black"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-black"
         >
           Skip to content
         </a>
+        <Announcement />
         <Navbar />
         <main id="main" className="flex-1">
           {children}

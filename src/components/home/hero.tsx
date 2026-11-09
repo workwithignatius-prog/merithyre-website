@@ -1,38 +1,57 @@
+import { RefreshCw, ShieldCheck, UsersRound } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
-import { Eyebrow } from "@/components/ui/section-heading";
+import { Swash } from "@/components/ui/swash";
 import { site } from "@/content/site";
-import { HeroProduct } from "./hero-product";
+import { DemoStage } from "./demo-stage";
+
+const badges = [
+  { icon: RefreshCw, text: "Bullhorn & Greenhouse sync" },
+  { icon: ShieldCheck, text: "Built for NYC LL144" },
+  { icon: UsersRound, text: "Founded by recruiters" },
+];
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden px-5 pt-14 pb-8 sm:px-6 sm:pt-24">
-      {/* backdrop */}
-      <div aria-hidden className="bg-grid fade-radial absolute inset-0 opacity-70" />
-      <div
-        aria-hidden
-        className="absolute left-1/2 top-[-280px] h-[620px] w-[1100px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(18_196_125/0.22),transparent)] blur-3xl"
-      />
+    <section className="relative px-5 pb-20 pt-10 sm:px-6 sm:pt-16 lg:pb-28">
+      <div aria-hidden className="bg-atmosphere pointer-events-none absolute inset-x-0 -top-28 bottom-0" />
 
-      <div className="relative mx-auto max-w-[1200px] text-center">
-        <Eyebrow>AI-native recruitment automation</Eyebrow>
-        <h1 className="mx-auto mt-6 max-w-5xl text-[clamp(2.75rem,7.2vw,5.75rem)] font-semibold leading-[0.95] tracking-[-0.055em]">
-          <span className="text-gradient block">Hire at machine speed.</span>
-          <span className="text-gradient-brand block pb-1">Decide like a human.</span>
-        </h1>
-        <p className="mx-auto mt-7 max-w-2xl text-[17px] leading-relaxed text-muted sm:text-xl sm:leading-relaxed">
-          MeritHyre sources, screens, ranks and interviews every applicant overnight, then hands your team a decision-ready shortlist.
-        </p>
-        <div className="mt-9 flex flex-wrap justify-center gap-3">
-          <ButtonLink href={site.demoHref} size="lg" arrow>
-            Book a demo
-          </ButtonLink>
-          <ButtonLink href="/#how-it-works" size="lg" variant="secondary">
-            See how it works
-          </ButtonLink>
+      <div className="relative mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-14 lg:grid-cols-[minmax(0,1.04fr)_minmax(0,1fr)] lg:gap-12">
+        <div>
+          <ul className="flex flex-wrap gap-1.5">
+            {badges.map((b) => (
+              <li
+                key={b.text}
+                className="inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-[13px] font-medium text-white/85"
+              >
+                <b.icon aria-hidden className="size-3.5 text-mh-300" />
+                {b.text}
+              </li>
+            ))}
+          </ul>
+
+          <h1 className="mt-8 font-display text-[clamp(2.9rem,6vw,5.2rem)] font-bold leading-[0.97] tracking-[-0.04em] text-fg">
+            Hire at machine speed.
+            <br />
+            Decide like <Swash>a human.</Swash>
+          </h1>
+
+          <p className="mt-8 max-w-[34rem] text-lg leading-relaxed text-muted sm:text-xl sm:leading-relaxed">
+            MeritHyre sources, screens, ranks and interviews every applicant overnight, then hands your team a decision-ready
+            shortlist. You make every call.
+          </p>
+
+          <div className="mt-10 flex flex-wrap gap-3">
+            <ButtonLink href={site.demoHref} size="lg" arrow>
+              Book a demo
+            </ButtonLink>
+            <ButtonLink href="/#how-it-works" size="lg" variant="secondary">
+              See how it works
+            </ButtonLink>
+          </div>
+          <p className="mt-6 text-sm text-subtle">From $99/month · No contract · Live in under a day</p>
         </div>
-        <p className="mt-6 text-sm text-subtle">From $99/month · No contract · Live in under a day</p>
 
-        <HeroProduct />
+        <DemoStage />
       </div>
     </section>
   );

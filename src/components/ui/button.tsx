@@ -7,20 +7,18 @@ type Variant = "primary" | "secondary" | "ghost";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium transition-[background-color,border-color,color,box-shadow,transform] duration-200 active:translate-y-px";
+  "group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium transition-[background-color,border-color,color,transform] duration-200 active:translate-y-px";
 
 const variants: Record<Variant, string> = {
-  primary:
-    "bg-mh-400 text-[#03140b] hover:bg-mh-300 shadow-[0_0_0_1px_rgb(52_227_156/0.55),0_12px_40px_-12px_rgb(52_227_156/0.75)]",
-  secondary:
-    "border border-white/10 bg-white/[0.04] text-fg hover:border-white/20 hover:bg-white/[0.08]",
+  primary: "bg-white text-[#0b0b0c] hover:bg-[#e9e8e3]",
+  secondary: "border border-white/15 text-fg hover:border-white/30 hover:bg-white/[0.05]",
   ghost: "text-muted hover:text-fg",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-9 px-4 text-sm",
+  sm: "h-10 px-5 text-[15px]",
   md: "h-11 px-5 text-[15px]",
-  lg: "h-12 px-6 text-base",
+  lg: "h-[52px] px-7 text-base",
 };
 
 export function buttonClasses(variant: Variant = "primary", size: Size = "md", className?: string) {

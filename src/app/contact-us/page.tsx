@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CalendarCheck, Mail, MapPin, Phone } from "lucide-react";
 import { ContactForm } from "@/components/contact/contact-form";
 import { PageHero } from "@/components/sections/page-hero";
+import { Swash } from "@/components/ui/swash";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -30,7 +31,7 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        title={<span className="text-gradient">Let&apos;s talk.</span>}
+        title={<Swash>Let&apos;s talk.</Swash>}
         body="Book a demo, ask a product question or talk partnerships. We're a small team and we respond to everything."
       />
       <section className="px-5 pb-24 sm:px-6 sm:pb-32">

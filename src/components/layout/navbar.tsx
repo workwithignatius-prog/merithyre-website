@@ -6,21 +6,27 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { Logo } from "./logo";
 import { ButtonLink } from "@/components/ui/button";
-import { mainNav } from "@/content/navigation";
 import { segments } from "@/content/segments";
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
 
-function NavLink({ href, className, children }: { href: string; className?: string; children: React.ReactNode }) {
+const links = [
+  { label: "How it works", href: "/#how-it-works" },
+  { label: "Pricing", href: "/pricing/", sticker: "$99" },
+  { label: "About", href: "/about-us/" },
+  { label: "Blog", href: site.blogUrl },
+];
+
+function NavLink({ href, className, onClick, children }: { href: string; className?: string; onClick?: () => void; children: React.ReactNode }) {
   if (href.startsWith("http")) {
     return (
-      <a href={href} className={className}>
+      <a href={href} className={className} onClick={onClick}>
         {children}
       </a>
     );
   }
   return (
-    <Link href={href} className={className}>
+    <Link href={href} className={className} onClick={onClick}>
       {children}
     </Link>
   );
@@ -28,18 +34,10 @@ function NavLink({ href, className, children }: { href: string; className?: stri
 
 export function Navbar() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const menuRef = useRef<HTMLLIElement>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // Close menus when the route changes.
   const [lastPath, setLastPath] = useState(pathname);
@@ -67,13 +65,6 @@ export function Navbar() {
     };
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
-
   const openMenu = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setMenuOpen(true);
@@ -82,93 +73,87 @@ export function Navbar() {
     closeTimer.current = setTimeout(() => setMenuOpen(false), 150);
   };
 
+  const linkCls = "relative flex h-10 items-center rounded-full px-4 text-[15px] font-medium transition-colors";
+
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300",
-        scrolled || mobileOpen
-          ? "border-b border-white/[0.07] bg-canvas/75 backdrop-blur-xl"
-          : "border-b border-transparent",
-      )}
-    >
-      <nav aria-label="Main" className="mx-auto flex h-16 max-w-[1200px] items-center gap-8 px-5 sm:px-6">
+    <header className="sticky top-3 z-50 px-3 pt-3 sm:px-5">
+      <nav
+        aria-label="Main"
+        className="relative mx-auto flex h-16 max-w-[1180px] items-center rounded-full border border-white/10 bg-[#121315]/90 pl-5 pr-2 shadow-[0_20px_50px_-20px_rgb(0_0_0/0.9)] backdrop-blur-xl"
+      >
         <Logo />
 
-        <ul className="hidden items-center gap-1 lg:flex">
-          {mainNav.map((item) =>
-            "children" in item ? (
-              <li key={item.label} ref={menuRef} className="relative" onMouseEnter={openMenu} onMouseLeave={closeMenuSoon}>
-                <button
-                  type="button"
-                  aria-expanded={menuOpen}
-                  aria-controls="solutions-menu"
-                  onClick={() => setMenuOpen((o) => !o)}
-                  className="flex h-9 items-center gap-1 rounded-full px-3.5 text-sm text-muted transition-colors hover:text-fg"
-                >
-                  {item.label}
-                  <ChevronDown aria-hidden className={cn("size-3.5 transition-transform duration-200", menuOpen && "rotate-180")} />
-                </button>
-                <div
-                  id="solutions-menu"
-                  className={cn(
-                    "absolute left-1/2 top-full w-[560px] -translate-x-1/2 pt-3 transition-all duration-200",
-                    menuOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-1 opacity-0",
-                  )}
-                >
-                  <div className="rounded-2xl border border-white/10 bg-panel/95 p-2 shadow-[0_30px_80px_-20px_rgb(0_0_0/0.8)] backdrop-blur-xl">
-                    <div className="grid grid-cols-2 gap-1">
-                      {segments.map((s) => (
-                        <Link
-                          key={s.slug}
-                          href={s.href}
-                          onClick={() => setMenuOpen(false)}
-                          className="group flex gap-3 rounded-xl p-3 transition-colors hover:bg-white/[0.05]"
-                        >
-                          <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/[0.04] text-mh-400">
-                            <s.icon aria-hidden className="size-[18px]" />
-                          </span>
-                          <span>
-                            <span className="block text-sm font-medium text-fg">{s.name}</span>
-                            <span className="mt-0.5 block text-[13px] leading-snug text-muted">{s.short}</span>
-                          </span>
-                        </Link>
-                      ))}
-                    </div>
-                    <div className="mt-1 flex items-center justify-between rounded-xl bg-white/[0.03] px-4 py-3 text-[13px] text-muted">
-                      <span>Every plan includes the full AI pipeline</span>
-                      <Link
-                        href="/pricing/"
-                        onClick={() => setMenuOpen(false)}
-                        className="group inline-flex items-center gap-1 font-medium text-mh-300 hover:text-mh-200"
-                      >
-                        From $99/mo
-                        <ArrowRight aria-hidden className="size-3.5 transition-transform group-hover:translate-x-0.5" />
-                      </Link>
-                    </div>
-                  </div>
+        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-0.5 lg:flex">
+          <li ref={menuRef} className="relative" onMouseEnter={openMenu} onMouseLeave={closeMenuSoon}>
+            <button
+              type="button"
+              aria-expanded={menuOpen}
+              aria-controls="solutions-menu"
+              onClick={() => setMenuOpen((o) => !o)}
+              className={cn(linkCls, "gap-1", menuOpen ? "text-white" : "text-white/75 hover:text-white")}
+            >
+              Solutions
+              <ChevronDown aria-hidden className={cn("size-4 transition-transform duration-200", menuOpen && "rotate-180")} />
+            </button>
+            <div
+              id="solutions-menu"
+              className={cn(
+                "absolute left-1/2 top-full w-[540px] -translate-x-1/2 pt-4 transition-all duration-200",
+                menuOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-1 opacity-0",
+              )}
+            >
+              <div className="rounded-[26px] border border-white/10 bg-[#121315] p-2.5 shadow-[0_30px_80px_-24px_rgb(0_0_0/0.9)]">
+                <div className="grid grid-cols-2 gap-1">
+                  {segments.map((s) => (
+                    <Link
+                      key={s.slug}
+                      href={s.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="group flex gap-3 rounded-2xl p-3 transition-colors hover:bg-white/[0.05]"
+                    >
+                      <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-white/[0.06] text-mh-300">
+                        <s.icon aria-hidden className="size-[18px]" />
+                      </span>
+                      <span>
+                        <span className="block text-[15px] font-medium text-fg">{s.name}</span>
+                        <span className="mt-0.5 block text-[13px] leading-snug text-muted">{s.short}</span>
+                      </span>
+                    </Link>
+                  ))}
                 </div>
-              </li>
-            ) : (
-              <li key={item.label}>
-                <NavLink
-                  href={item.href}
-                  className={cn(
-                    "flex h-9 items-center rounded-full px-3.5 text-sm transition-colors hover:text-fg",
-                    pathname === item.href ? "text-fg" : "text-muted",
-                  )}
+                <Link
+                  href="/pricing/"
+                  onClick={() => setMenuOpen(false)}
+                  className="group mt-1 flex items-center justify-between rounded-2xl bg-white/[0.04] px-4 py-3 text-[13px] text-muted transition-colors hover:bg-white/[0.07]"
                 >
-                  {item.label}
-                </NavLink>
-              </li>
-            ),
-          )}
+                  <span>Every plan includes the full pipeline</span>
+                  <span className="inline-flex items-center gap-1 font-medium text-fg">
+                    See pricing
+                    <ArrowRight aria-hidden className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </li>
+          {links.map((l) => (
+            <li key={l.label}>
+              <NavLink href={l.href} className={cn(linkCls, pathname === l.href ? "text-white" : "text-white/75 hover:text-white")}>
+                {l.label}
+                {l.sticker && (
+                  <span
+                    aria-hidden
+                    className="absolute -right-2.5 -top-2.5 rotate-[14deg] rounded-md bg-mh-400 px-1.5 py-px text-[10px] font-bold leading-4 text-[#062012] shadow-sm"
+                  >
+                    {l.sticker}
+                  </span>
+                )}
+              </NavLink>
+            </li>
+          ))}
         </ul>
 
-        <div className="ml-auto flex items-center gap-2">
-          <Link href="/contact-us/" className="hidden h-9 items-center rounded-full px-3.5 text-sm text-muted transition-colors hover:text-fg sm:flex">
-            Contact
-          </Link>
-          <ButtonLink href={site.demoHref} size="sm" className="max-[360px]:hidden">
+        <div className="ml-auto flex items-center gap-1.5">
+          <ButtonLink href={site.demoHref} size="sm" className="h-12 px-6 text-base max-sm:hidden">
             Book a demo
           </ButtonLink>
           <button
@@ -177,9 +162,9 @@ export function Navbar() {
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            className="grid size-10 place-items-center rounded-full border border-white/10 bg-white/[0.04] text-fg lg:hidden"
+            className="grid size-12 place-items-center rounded-full text-fg transition-colors hover:bg-white/[0.06] lg:hidden"
           >
-            {mobileOpen ? <X aria-hidden className="size-[18px]" /> : <Menu aria-hidden className="size-[18px]" />}
+            {mobileOpen ? <X aria-hidden className="size-5" /> : <Menu aria-hidden className="size-5" />}
           </button>
         </div>
       </nav>
@@ -187,41 +172,36 @@ export function Navbar() {
       <div
         id="mobile-menu"
         hidden={!mobileOpen}
-        className="h-[calc(100dvh-4rem)] overflow-y-auto border-t border-white/[0.07] bg-canvas px-5 pb-10 lg:hidden"
+        className="mx-auto mt-2 max-h-[calc(100dvh-7rem)] max-w-[1180px] overflow-y-auto rounded-[28px] border border-white/10 bg-[#121315] p-3 shadow-[0_30px_80px_-24px_rgb(0_0_0/0.9)] lg:hidden"
       >
-        <ul className="divide-y divide-white/[0.07]">
-          <li>
-            <Link href="/#how-it-works" className="block py-4 text-lg text-fg" onClick={() => setMobileOpen(false)}>
-              How it works
-            </Link>
-          </li>
-          <li className="py-4">
-            <span className="text-xs font-medium uppercase tracking-[0.14em] text-mh-400">Solutions</span>
-            <ul className="mt-3 grid gap-1">
-              {segments.map((s) => (
-                <li key={s.slug}>
-                  <Link href={s.href} className="flex items-center gap-3 rounded-xl py-2.5 text-fg" onClick={() => setMobileOpen(false)}>
-                    <s.icon aria-hidden className="size-[18px] text-mh-400" />
-                    <span>{s.name}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </li>
-          {[
-            { label: "Pricing", href: "/pricing/" },
-            { label: "About", href: "/about-us/" },
-            { label: "Blog", href: site.blogUrl },
-            { label: "Contact", href: "/contact-us/" },
-          ].map((l) => (
-            <li key={l.label}>
-              <NavLink href={l.href} className="block py-4 text-lg text-fg">
-                {l.label}
-              </NavLink>
+        <p className="px-3 pb-1 pt-2 text-[13px] font-medium text-subtle">Solutions</p>
+        <ul className="grid gap-0.5 sm:grid-cols-2">
+          {segments.map((s) => (
+            <li key={s.slug}>
+              <Link href={s.href} onClick={() => setMobileOpen(false)} className="flex items-center gap-3 rounded-2xl px-3 py-3 text-fg hover:bg-white/[0.05]">
+                <s.icon aria-hidden className="size-[18px] text-mh-300" />
+                {s.name}
+              </Link>
             </li>
           ))}
         </ul>
-        <ButtonLink href={site.demoHref} size="lg" arrow className="mt-6 w-full">
+        <div className="my-2 h-px bg-white/[0.07]" />
+        <ul className="grid gap-0.5">
+          {links.map((l) => (
+            <li key={l.label}>
+              <NavLink href={l.href} onClick={() => setMobileOpen(false)} className="flex items-center gap-2 rounded-2xl px-3 py-3 text-lg text-fg hover:bg-white/[0.05]">
+                {l.label}
+                {l.sticker && <span className="rounded-md bg-mh-400 px-1.5 text-[11px] font-bold text-[#062012]">from {l.sticker}</span>}
+              </NavLink>
+            </li>
+          ))}
+          <li>
+            <Link href="/contact-us/" onClick={() => setMobileOpen(false)} className="flex rounded-2xl px-3 py-3 text-lg text-fg hover:bg-white/[0.05]">
+              Contact
+            </Link>
+          </li>
+        </ul>
+        <ButtonLink href={site.demoHref} size="lg" arrow className="mt-2 w-full" onClick={() => setMobileOpen(false)}>
           Book a demo
         </ButtonLink>
       </div>

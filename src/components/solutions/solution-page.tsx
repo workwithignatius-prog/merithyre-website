@@ -1,6 +1,7 @@
 import { Check, X } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
-import { Eyebrow, SectionHeading } from "@/components/ui/section-heading";
+import { Label, SectionHeading } from "@/components/ui/section-heading";
+import { Swash } from "@/components/ui/swash";
 import { PipelineTrack } from "@/components/sections/pipeline-track";
 import { Quotes } from "@/components/sections/quotes";
 import { SegmentCards } from "@/components/sections/segment-cards";
@@ -13,19 +14,15 @@ import { SegmentVisual } from "./segment-visual";
 export function SolutionPage({ segment }: { segment: Segment }) {
   return (
     <>
-      <section className="relative overflow-hidden px-5 pt-14 pb-16 sm:px-6 sm:pt-20 sm:pb-24">
-        <div aria-hidden className="bg-grid fade-radial absolute inset-0 opacity-60" />
-        <div
-          aria-hidden
-          className="absolute left-[30%] top-[-260px] h-[560px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(18_196_125/0.2),transparent)] blur-3xl"
-        />
-        <div className="relative mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+      <section className="relative px-5 pb-16 pt-10 sm:px-6 sm:pb-24 sm:pt-16">
+        <div aria-hidden className="bg-atmosphere pointer-events-none absolute inset-x-0 -top-28 bottom-0" />
+        <div className="relative mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
           <div>
-            <Eyebrow>{segment.hero.eyebrow}</Eyebrow>
-            <h1 className="mt-6 text-[clamp(2.6rem,6vw,4.6rem)] font-semibold leading-[0.97] tracking-[-0.05em]">
-              <span className="text-gradient">{segment.hero.title}</span>
+            <Label>{segment.hero.eyebrow}</Label>
+            <h1 className="mt-4 font-display text-[clamp(2.7rem,5.6vw,4.6rem)] font-bold leading-[0.98] tracking-[-0.04em] text-fg">
+              {segment.hero.title}
               <br />
-              <span className="text-gradient-brand">{segment.hero.highlight}</span>
+              <Swash wrap>{segment.hero.highlight}</Swash>
             </h1>
             <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-muted sm:text-lg">{segment.hero.body}</p>
             <div className="mt-9 flex flex-wrap gap-3">
@@ -50,13 +47,13 @@ export function SolutionPage({ segment }: { segment: Segment }) {
       </section>
 
       <section className="px-5 pb-20 sm:px-6 sm:pb-28">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-[1180px]">
           <Stats items={segment.stats} />
         </div>
       </section>
 
       <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-[1180px]">
           <SectionHeading eyebrow="The problem" title="Sound familiar? Here's the fix." />
           <ul className="mt-14 grid grid-cols-1 gap-4 lg:grid-cols-3 lg:grid-rows-[auto_auto]">
             {segment.problems.map((p) => (
@@ -84,7 +81,7 @@ export function SolutionPage({ segment }: { segment: Segment }) {
       </section>
 
       <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-[1180px]">
           <SectionHeading
             eyebrow="How it works"
             title={
@@ -101,7 +98,7 @@ export function SolutionPage({ segment }: { segment: Segment }) {
       </section>
 
       <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-[1180px]">
           <SectionHeading eyebrow="Customers" title="In their own words." />
           <div className="mt-14">
             <Quotes items={segment.quotes} />
@@ -110,7 +107,7 @@ export function SolutionPage({ segment }: { segment: Segment }) {
       </section>
 
       <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-[1180px]">
           <SectionHeading eyebrow="Also built for" title={
               <>
                 One pipeline.

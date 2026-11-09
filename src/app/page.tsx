@@ -7,6 +7,7 @@ import { SegmentCards } from "@/components/sections/segment-cards";
 import { Stats } from "@/components/sections/stats";
 import { Quotes } from "@/components/sections/quotes";
 import { Compliance } from "@/components/sections/compliance";
+import { FounderNote } from "@/components/home/founder-note";
 import { CtaBand } from "@/components/sections/cta-band";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -74,7 +75,7 @@ export default function HomePage() {
       <StackStrip />
 
       <section id="how-it-works" className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-[1180px]">
           <SectionHeading
             eyebrow="How it works"
             title={
@@ -94,7 +95,7 @@ export default function HomePage() {
       <Features />
 
       <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-[1180px]">
           <SectionHeading
             eyebrow="Solutions"
             title="Built for teams that hire seriously."
@@ -107,7 +108,7 @@ export default function HomePage() {
       </section>
 
       <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-[1180px]">
           <SectionHeading eyebrow="Results" title="Recruiting teams that made the switch." />
           <div className="mt-14 space-y-4">
             <Stats items={homeStats} />
@@ -116,6 +117,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      <FounderNote />
       <Compliance />
       <CtaBand />
     </>

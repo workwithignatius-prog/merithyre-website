@@ -26,7 +26,7 @@ export function Footer() {
   ];
   return (
     <footer className="relative border-t border-white/[0.07] bg-[#040505]">
-      <div className="mx-auto max-w-[1200px] px-5 pt-16 pb-10 sm:px-6">
+      <div className="mx-auto max-w-[1180px] px-5 pt-16 pb-10 sm:px-6">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,2fr)]">
           <div>
             <Link href="/" aria-label="MeritHyre home" className="flex items-center gap-2.5">

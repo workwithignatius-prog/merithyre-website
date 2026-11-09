@@ -1,17 +1,15 @@
-import { Check, FileCheck2, ListOrdered, Lock, Mic, RefreshCw, type LucideIcon } from "lucide-react";
-import { SpotlightCard } from "@/components/ui/spotlight-card";
+import { Check, Lock } from "lucide-react";
+import { Card } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { LogoMark } from "@/components/layout/logo";
 import { cn } from "@/lib/cn";
 
-function CardText({ icon: Icon, title, body }: { icon: LucideIcon; title: string; body: string }) {
+function CardText({ kicker, title, body }: { kicker: string; title: string; body: string }) {
   return (
     <div>
-      <span className="grid size-9 place-items-center rounded-lg border border-white/10 bg-white/[0.04] text-mh-300">
-        <Icon aria-hidden className="size-[18px]" />
-      </span>
-      <h3 className="mt-5 text-lg font-semibold tracking-[-0.02em] text-fg">{title}</h3>
-      <p className="mt-2 text-[15px] leading-relaxed text-muted">{body}</p>
+      <p className="text-[13px] font-medium text-mh-300">{kicker}</p>
+      <h3 className="mt-2 text-[22px] font-semibold leading-tight tracking-[-0.025em] text-fg">{title}</h3>
+      <p className="mt-2.5 text-[15px] leading-relaxed text-muted">{body}</p>
     </div>
   );
 }
@@ -23,31 +21,33 @@ function InterviewVisual() {
     { tag: "Competency", text: "Two people call out an hour before shift…", meta: "Scored 1–5" },
   ];
   return (
-    <div aria-hidden className="rounded-xl border border-white/[0.08] bg-[#090b0e] p-4">
-      <div className="flex items-center justify-between">
-        <span className="text-xs font-medium text-fg">Interview plan</span>
-        <span className="flex rounded-full border border-white/10 p-0.5 text-[11px]">
-          <span className="rounded-full bg-mh-400/15 px-2.5 py-0.5 text-mh-300">Voice</span>
-          <span className="px-2.5 py-0.5 text-subtle">Video</span>
-          <span className="px-2.5 py-0.5 text-subtle">Text</span>
-        </span>
+    <div aria-hidden className="bg-backdrop rounded-[20px] p-4 sm:p-6">
+      <div className="rounded-2xl border border-white/10 bg-[#0e0f11]/95 p-4 shadow-[0_30px_60px_-30px_rgb(0_0_0/0.8)]">
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-medium text-fg">Interview plan</span>
+          <span className="flex rounded-full border border-white/10 p-0.5 text-[11px]">
+            <span className="rounded-full bg-white px-2.5 py-0.5 font-medium text-[#0b0b0c]">Voice</span>
+            <span className="px-2.5 py-0.5 text-subtle">Video</span>
+            <span className="px-2.5 py-0.5 text-subtle">Text</span>
+          </span>
+        </div>
+        <ul className="mt-3 space-y-2">
+          {qs.map((q) => (
+            <li key={q.text} className="flex items-center gap-3 rounded-xl bg-white/[0.045] px-3 py-2.5 text-[13px]">
+              <span
+                className={cn(
+                  "shrink-0 rounded-md px-1.5 py-0.5 text-[10px] font-semibold",
+                  q.tag === "Gate" ? "bg-white/10 text-white/70" : "bg-mh-400/15 text-mh-300",
+                )}
+              >
+                {q.tag}
+              </span>
+              <span className="min-w-0 flex-1 truncate text-fg">{q.text}</span>
+              <span className="hidden shrink-0 text-[11px] text-subtle sm:block">{q.meta}</span>
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul className="mt-3 space-y-2">
-        {qs.map((q) => (
-          <li key={q.text} className="flex items-center gap-3 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2.5 text-[13px]">
-            <span
-              className={cn(
-                "shrink-0 rounded-md px-1.5 py-0.5 text-[10px] font-medium",
-                q.tag === "Gate" ? "bg-white/[0.07] text-muted" : "bg-mh-400/10 text-mh-300",
-              )}
-            >
-              {q.tag}
-            </span>
-            <span className="min-w-0 flex-1 truncate text-fg">{q.text}</span>
-            <span className="hidden shrink-0 text-[11px] text-subtle sm:block">{q.meta}</span>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
@@ -55,14 +55,14 @@ function InterviewVisual() {
 function RankVisual() {
   const items = [94, 91, 88, 86];
   return (
-    <div aria-hidden className="space-y-2.5">
+    <div aria-hidden className="space-y-3">
       {items.map((v, i) => (
         <div key={v} className="flex items-center gap-3">
-          <span className="w-4 text-[11px] tabular-nums text-subtle">{i + 1}</span>
-          <span className="h-2 flex-1 overflow-hidden rounded-full bg-white/[0.06]">
-            <span className="block h-full rounded-full bg-gradient-to-r from-mh-600 to-mh-300" style={{ width: `${v}%` }} />
+          <span className="w-4 text-xs tabular-nums text-subtle">{i + 1}</span>
+          <span className="h-2 flex-1 overflow-hidden rounded-full bg-white/[0.07]">
+            <span className="block h-full rounded-full bg-mh-400" style={{ width: `${v}%`, opacity: 1 - i * 0.18 }} />
           </span>
-          <span className="w-6 text-right text-xs font-medium tabular-nums text-mh-300">{v}</span>
+          <span className="w-6 text-right text-xs font-semibold tabular-nums text-fg">{v}</span>
         </div>
       ))}
     </div>
@@ -76,11 +76,11 @@ function ReportVisual() {
     { k: "Shift planning", v: 4 },
   ];
   return (
-    <div aria-hidden className="rounded-xl border border-white/[0.08] bg-[#090b0e] p-4">
+    <div aria-hidden className="rounded-2xl bg-white/[0.04] p-4">
       <div className="flex items-end justify-between">
         <span className="text-xs text-muted">Maria Delgado</span>
-        <span className="text-2xl font-semibold tracking-tight text-mh-300">
-          4.3<span className="text-xs text-subtle">/5</span>
+        <span className="font-display text-2xl font-semibold tracking-tight text-fg">
+          4.3<span className="text-xs font-normal text-subtle">/5</span>
         </span>
       </div>
       <div className="mt-3 space-y-2">
@@ -89,7 +89,7 @@ function ReportVisual() {
             {r.k}
             <span className="flex gap-1">
               {[0, 1, 2, 3, 4].map((i) => (
-                <span key={i} className={cn("size-1.5 rounded-full", i < r.v ? "bg-mh-400" : "bg-white/15")} />
+                <span key={i} className={cn("size-1.5 rounded-full", i < r.v ? "bg-mh-300" : "bg-white/15")} />
               ))}
             </span>
           </div>
@@ -101,12 +101,12 @@ function ReportVisual() {
 
 function GateVisual() {
   return (
-    <div aria-hidden className="flex flex-col items-center gap-3 rounded-xl border border-amber-300/20 bg-amber-300/[0.05] p-5">
-      <span className="grid size-11 place-items-center rounded-full border border-amber-300/30 bg-amber-300/10 text-amber-200 shadow-[0_0_30px_-6px_rgb(252_211_77/0.6)]">
+    <div aria-hidden className="flex flex-col items-center gap-3 rounded-2xl bg-sun-400/[0.08] p-5">
+      <span className="grid size-11 place-items-center rounded-full bg-sun-400/15 text-sun-300">
         <Lock className="size-5" />
       </span>
-      <span className="inline-flex h-8 items-center gap-1.5 rounded-full bg-amber-300 px-4 text-xs font-semibold text-[#1f1300]">
-        <Check className="size-3.5" />
+      <span className="inline-flex h-9 items-center gap-1.5 rounded-full bg-sun-400 px-4 text-xs font-semibold text-[#2a1a02]">
+        <Check className="size-3.5" strokeWidth={3} />
         Approve 3 candidates
       </span>
       <span className="text-[11px] text-subtle">Recruiter only · can&apos;t be switched off</span>
@@ -116,12 +116,12 @@ function GateVisual() {
 
 function SyncVisual() {
   return (
-    <div aria-hidden className="relative flex items-center justify-between gap-4 rounded-xl border border-white/[0.08] bg-[#090b0e] px-5 py-6">
+    <div aria-hidden className="relative flex items-center justify-between gap-4 rounded-2xl bg-white/[0.04] px-5 py-6">
       <LogoMark className="size-11 text-xl" />
-      <div className="relative h-px flex-1 overflow-hidden bg-white/10">
-        <span className="animate-beam absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-mh-300 to-transparent" />
+      <div className="relative h-px flex-1 overflow-hidden bg-white/15">
+        <span className="animate-beam absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white to-transparent" />
       </div>
-      <ul className="space-y-1.5 text-[13px] font-semibold tracking-[-0.02em] text-white/70">
+      <ul className="space-y-1.5 font-display text-[15px] font-semibold tracking-[-0.02em] text-white/75">
         <li>Bullhorn</li>
         <li>Greenhouse</li>
         <li>Tellent</li>
@@ -133,39 +133,39 @@ function SyncVisual() {
 export function Features() {
   return (
     <section id="features" className="px-5 py-20 sm:px-6 sm:py-28">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="mx-auto max-w-[1180px]">
         <SectionHeading
-          eyebrow="Platform"
+          eyebrow="The platform"
           title="Everything between the job post and the hire."
-          body="One AI-native system, not a stack of bolt-ons. Your team stays in control of every decision."
+          body="One system instead of a stack of bolt-ons. Your team stays in charge of every decision."
         />
         <div className="mt-16 grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <SpotlightCard className="reveal p-6 sm:p-8 lg:col-span-2">
+          <Card className="reveal p-6 sm:p-8 lg:col-span-2">
             <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)]">
               <CardText
-                icon={Mic}
-                title="AI interviews, any hour"
-                body="Structured voice, video or text interviews with questions drawn from your JD. Gate questions pass or fail; competencies are scored on five-level anchors."
+                kicker="AI interviews"
+                title="Interviews that run while you sleep"
+                body="Structured voice, video or text interviews built from your job description. Gate questions pass or fail; competencies are scored on five-level anchors."
               />
               <InterviewVisual />
             </div>
-          </SpotlightCard>
-          <SpotlightCard className="reveal flex flex-col justify-between gap-8 p-6 sm:p-8">
-            <CardText icon={ListOrdered} title="Ranked, not piled up" body="Every applicant scored the moment they apply, weighted the way you decide." />
+          </Card>
+          <Card className="reveal flex flex-col justify-between gap-8 p-6 sm:p-8">
+            <CardText kicker="Screening" title="A ranked list, not a pile" body="Every applicant scored the moment they apply, weighted the way you decide." />
             <RankVisual />
-          </SpotlightCard>
-          <SpotlightCard className="reveal flex flex-col justify-between gap-8 p-6 sm:p-8">
-            <CardText icon={FileCheck2} title="Decision-ready reports" body="Full transcript, competency scores, strengths and gaps in one brief." />
+          </Card>
+          <Card className="reveal flex flex-col justify-between gap-8 p-6 sm:p-8">
+            <CardText kicker="Insights report" title="Read the evidence" body="Full transcript, competency scores, strengths and gaps in one brief." />
             <ReportVisual />
-          </SpotlightCard>
-          <SpotlightCard className="reveal flex flex-col justify-between gap-8 p-6 sm:p-8">
-            <CardText icon={Lock} title="A human gate you can't skip" body="No candidate advances without your approval. It's hardcoded." />
+          </Card>
+          <Card className="reveal flex flex-col justify-between gap-8 p-6 sm:p-8">
+            <CardText kicker="Human gate" title="You approve every move" body="No candidate advances without your approval. It's hardcoded." />
             <GateVisual />
-          </SpotlightCard>
-          <SpotlightCard className="reveal flex flex-col justify-between gap-8 p-6 sm:p-8">
-            <CardText icon={RefreshCw} title="Keeps your ATS" body="Two-way sync with Bullhorn, Greenhouse and Tellent. Or run standalone." />
+          </Card>
+          <Card className="reveal flex flex-col justify-between gap-8 p-6 sm:p-8">
+            <CardText kicker="Integrations" title="Keep your ATS" body="Two-way sync with Bullhorn, Greenhouse and Tellent, or run standalone." />
             <SyncVisual />
-          </SpotlightCard>
+          </Card>
         </div>
       </div>
     </section>

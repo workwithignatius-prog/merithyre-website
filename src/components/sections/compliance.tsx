@@ -1,5 +1,5 @@
 import { Download, History, ShieldCheck } from "lucide-react";
-import { Eyebrow } from "@/components/ui/section-heading";
+import { Label } from "@/components/ui/section-heading";
 import { regulations } from "@/content/site";
 import { cn } from "@/lib/cn";
 
@@ -15,8 +15,7 @@ const log = [
 export function AuditLog() {
   return (
     <div className="relative">
-      <div aria-hidden className="absolute inset-0 rounded-[40px] bg-[radial-gradient(closest-side,rgb(52_227_156/0.14),transparent)] blur-2xl sm:-inset-8" />
-      <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-[#08090c] shadow-[0_40px_100px_-40px_rgb(0_0_0/0.9)]">
+            <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-panel">
         <div className="flex items-center justify-between border-b border-white/[0.07] px-5 py-3.5 text-xs">
           <span className="inline-flex items-center gap-2 text-muted">
             <History aria-hidden className="size-4 text-mh-400" />
@@ -35,13 +34,13 @@ export function AuditLog() {
                 key={l.t + l.ev}
                 className={cn(
                   "grid grid-cols-[72px_minmax(0,1fr)] items-baseline gap-x-4 border-l-2 px-5 py-3 sm:grid-cols-[72px_minmax(0,1fr)_auto]",
-                  kind === "hold" && "border-amber-300/70 bg-amber-300/[0.05]",
+                  kind === "hold" && "border-sun-400/80 bg-sun-400/[0.06]",
                   kind === "human" && "border-mh-400/70 bg-mh-400/[0.04]",
                   !kind && "border-transparent",
                 )}
               >
                 <time className="font-mono text-xs tabular-nums text-subtle">{l.t}</time>
-                <span className={cn("text-sm", kind === "hold" ? "text-amber-200" : kind === "human" ? "text-mh-200" : "text-fg")}>
+                <span className={cn("text-sm", kind === "hold" ? "text-sun-300" : kind === "human" ? "text-mh-200" : "text-fg")}>
                   {l.ev}
                 </span>
                 <span className="col-start-2 text-xs text-subtle sm:col-start-auto sm:text-right">{l.meta}</span>
@@ -58,10 +57,10 @@ export function AuditLog() {
 export function Compliance() {
   return (
     <section id="compliance" className="px-5 py-20 sm:px-6 sm:py-28">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="mx-auto max-w-[1180px]">
         <div className="reveal max-w-4xl">
-          <Eyebrow>Trust &amp; compliance</Eyebrow>
-          <h2 className="text-gradient mt-5 text-[clamp(2rem,4.2vw,3.25rem)] font-semibold leading-[1.04] tracking-[-0.04em]">
+          <Label>Trust &amp; compliance</Label>
+          <h2 className="mt-3 font-display text-[clamp(2.1rem,4.4vw,3.4rem)] font-bold leading-[1.02] tracking-[-0.035em] text-fg">
             Compliance isn&apos;t a feature.
             <br className="hidden sm:inline" /> It&apos;s the architecture.
           </h2>
