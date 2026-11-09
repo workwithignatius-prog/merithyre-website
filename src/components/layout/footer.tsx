@@ -6,7 +6,7 @@ import { footerNav } from "@/content/navigation";
 import { regulations, site } from "@/content/site";
 
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
-  const cls = "text-sm text-muted transition-colors hover:text-fg";
+  const cls = "text-sm text-muted underline-offset-4 transition-colors hover:text-fg hover:underline hover:decoration-white/30";
   return href.startsWith("http") ? (
     <a href={href} className={cls}>
       {children}
@@ -29,7 +29,7 @@ export function Footer() {
       <div className="mx-auto max-w-[1180px] px-5 pt-16 pb-10 sm:px-6">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,2fr)]">
           <div>
-            <Link href="/" aria-label="MeritHyre home" className="flex items-center gap-2.5">
+            <Link href="/" aria-label="MeritHyre home" className="group flex items-center gap-2.5">
               <LogoMark />
               <span className="text-[19px] font-semibold tracking-[-0.035em]">
                 Merit<span className="text-mh-400">Hyre</span>
@@ -97,7 +97,7 @@ export function Footer() {
                 <a
                   href={href}
                   aria-label={`MeritHyre on ${label}`}
-                  className="grid size-9 place-items-center rounded-full border border-white/10 text-muted transition-colors hover:border-white/20 hover:text-fg"
+                  className="grid size-9 place-items-center rounded-full border border-white/10 text-muted transition-[color,border-color,translate,background-color] duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.05] hover:text-fg"
                 >
                   <Icon className="size-4" />
                 </a>

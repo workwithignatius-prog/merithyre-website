@@ -5,8 +5,8 @@ import { LogoMark } from "@/components/layout/logo";
 /** Short, human note from the founders (copy from the current merithyre.ai About page). */
 export function FounderNote() {
   return (
-    <section className="px-5 py-20 sm:px-6 sm:py-28">
-      <figure className="reveal mx-auto grid max-w-[1180px] grid-cols-1 gap-10 border-t border-white/[0.08] pt-14 lg:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] lg:gap-16">
+    <section className="px-5 py-16 sm:px-6 sm:py-24">
+      <figure className="reveal mx-auto grid max-w-[1180px] grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.36fr)_minmax(0,1fr)] lg:gap-16">
         <figcaption className="order-2 lg:order-1">
           <Label>From the founders</Label>
           <div className="mt-6 flex items-center gap-4">
@@ -20,8 +20,14 @@ export function FounderNote() {
             Read our story
           </ButtonLink>
         </figcaption>
-        <div className="order-1 lg:order-2">
-          <blockquote className="font-display text-[clamp(1.9rem,3.7vw,3.1rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-fg">
+        <div className="relative order-1 lg:order-2">
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -left-4 -top-20 select-none font-display text-[260px] leading-none text-white/[0.05] sm:-left-10"
+          >
+            “
+          </span>
+          <blockquote className="relative font-display text-[clamp(1.9rem,3.7vw,3.1rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-fg">
             “Most recruitment tools are built by engineers who have never placed a candidate. We built MeritHyre after{" "}
             <span className="whitespace-nowrap text-sun-300">20 years</span> of doing exactly that.”
           </blockquote>

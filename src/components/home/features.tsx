@@ -1,6 +1,8 @@
-import { Check, Lock } from "lucide-react";
+import { Check, Lock, LockOpen } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { Glow } from "@/components/ui/decor";
+import { PlatformChips } from "@/components/sections/heading-chips";
 import { LogoMark } from "@/components/layout/logo";
 import { cn } from "@/lib/cn";
 
@@ -32,8 +34,12 @@ function InterviewVisual() {
           </span>
         </div>
         <ul className="mt-3 space-y-2">
-          {qs.map((q) => (
-            <li key={q.text} className="flex items-center gap-3 rounded-xl bg-white/[0.045] px-3 py-2.5 text-[13px]">
+          {qs.map((q, i) => (
+            <li
+              key={q.text}
+              className="flex items-center gap-3 rounded-xl bg-white/[0.045] px-3 py-2.5 text-[13px] transition-[translate,background-color] duration-300 group-hover:translate-x-1.5 group-hover:bg-white/[0.07]"
+              style={{ transitionDelay: `${i * 70}ms` }}
+            >
               <span
                 className={cn(
                   "shrink-0 rounded-md px-1.5 py-0.5 text-[10px] font-semibold",
@@ -60,7 +66,10 @@ function RankVisual() {
         <div key={v} className="flex items-center gap-3">
           <span className="w-4 text-xs tabular-nums text-subtle">{i + 1}</span>
           <span className="h-2 flex-1 overflow-hidden rounded-full bg-white/[0.07]">
-            <span className="block h-full rounded-full bg-mh-400" style={{ width: `${v}%`, opacity: 1 - i * 0.18 }} />
+            <span
+              className="block h-full w-[calc(var(--w)*0.72)] rounded-full bg-mh-400 transition-[width] duration-700 ease-out group-hover:w-[var(--w)]"
+              style={{ ["--w" as string]: `${v}%`, opacity: 1 - i * 0.18, transitionDelay: `${i * 60}ms` }}
+            />
           </span>
           <span className="w-6 text-right text-xs font-semibold tabular-nums text-fg">{v}</span>
         </div>
@@ -79,7 +88,7 @@ function ReportVisual() {
     <div aria-hidden className="rounded-2xl bg-white/[0.04] p-4">
       <div className="flex items-end justify-between">
         <span className="text-xs text-muted">Maria Delgado</span>
-        <span className="font-display text-2xl font-semibold tracking-tight text-fg">
+        <span className="font-display text-2xl font-semibold tracking-tight text-fg transition-colors duration-300 group-hover:text-mh-300">
           4.3<span className="text-xs font-normal text-subtle">/5</span>
         </span>
       </div>
@@ -102,10 +111,11 @@ function ReportVisual() {
 function GateVisual() {
   return (
     <div aria-hidden className="flex flex-col items-center gap-3 rounded-2xl bg-sun-400/[0.08] p-5">
-      <span className="grid size-11 place-items-center rounded-full bg-sun-400/15 text-sun-300">
-        <Lock className="size-5" />
+      <span className="relative grid size-11 place-items-center rounded-full bg-sun-400/15 text-sun-300 transition-colors duration-300 group-hover:bg-sun-400/25">
+        <Lock className="size-5 transition-opacity duration-300 group-hover:opacity-0" />
+        <LockOpen className="absolute size-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       </span>
-      <span className="inline-flex h-9 items-center gap-1.5 rounded-full bg-sun-400 px-4 text-xs font-semibold text-[#2a1a02]">
+      <span className="inline-flex h-9 items-center gap-1.5 rounded-full bg-sun-400 px-4 text-xs font-semibold text-[#2a1a02] transition-transform duration-300 group-hover:scale-105">
         <Check className="size-3.5" strokeWidth={3} />
         Approve 3 candidates
       </span>
@@ -121,7 +131,7 @@ function SyncVisual() {
       <div className="relative h-px flex-1 overflow-hidden bg-white/15">
         <span className="animate-beam absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white to-transparent" />
       </div>
-      <ul className="space-y-1.5 font-display text-[15px] font-semibold tracking-[-0.02em] text-white/75">
+      <ul className="space-y-1.5 font-display text-[15px] font-semibold tracking-[-0.02em] text-white/60 transition-colors duration-300 group-hover:text-white">
         <li>Bullhorn</li>
         <li>Greenhouse</li>
         <li>Tellent</li>
@@ -132,9 +142,11 @@ function SyncVisual() {
 
 export function Features() {
   return (
-    <section id="features" className="px-5 py-20 sm:px-6 sm:py-28">
-      <div className="mx-auto max-w-[1180px]">
+    <section id="features" className="relative px-5 py-16 sm:px-6 sm:py-24">
+      <div className="relative mx-auto max-w-[1180px]">
+        <Glow color="teal" className="-right-48 top-40 h-[520px] w-[680px]" />
         <SectionHeading
+          decor={<PlatformChips />}
           eyebrow="The platform"
           title="Everything between the job post and the hire."
           body="One system instead of a stack of bolt-ons. Your team stays in charge of every decision."

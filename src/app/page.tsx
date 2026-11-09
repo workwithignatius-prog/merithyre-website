@@ -10,6 +10,8 @@ import { Compliance } from "@/components/sections/compliance";
 import { FounderNote } from "@/components/home/founder-note";
 import { CtaBand } from "@/components/sections/cta-band";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { Divider, Glow } from "@/components/ui/decor";
+import { OvernightChips, ResultsChips, SolutionsChips } from "@/components/sections/heading-chips";
 import { JsonLd } from "@/components/seo/json-ld";
 import { homeQuotes } from "@/content/testimonials";
 import { agencyPlan, inHousePlans } from "@/content/pricing";
@@ -72,11 +74,15 @@ export default function HomePage() {
         }}
       />
       <Hero />
+      <Divider />
       <StackStrip />
+      <Divider />
 
-      <section id="how-it-works" className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1180px]">
+      <section id="how-it-works" className="relative px-5 py-16 sm:px-6 sm:py-24">
+        <div className="relative mx-auto max-w-[1180px]">
+          <Glow color="green" className="left-1/2 top-1/2 h-[420px] w-[900px] -translate-x-1/2" />
           <SectionHeading
+            decor={<OvernightChips />}
             eyebrow="How it works"
             title={
               <>
@@ -92,11 +98,15 @@ export default function HomePage() {
         </div>
       </section>
 
+      <Divider />
       <Features />
+      <Divider />
 
-      <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1180px]">
+      <section className="relative px-5 py-16 sm:px-6 sm:py-24">
+        <div className="relative mx-auto max-w-[1180px]">
+          <Glow color="amber" className="-right-40 top-10 h-[420px] w-[560px]" />
           <SectionHeading
+            decor={<SolutionsChips />}
             eyebrow="Solutions"
             title="Built for teams that hire seriously."
             body="Same pipeline, tuned to how your team hires."
@@ -107,9 +117,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1180px]">
-          <SectionHeading eyebrow="Results" title="Recruiting teams that made the switch." />
+      <Divider />
+      <section className="relative px-5 py-16 sm:px-6 sm:py-24">
+        <div className="relative mx-auto max-w-[1180px]">
+          <Glow color="green" className="-left-40 top-1/3 h-[460px] w-[620px]" />
+          <SectionHeading decor={<ResultsChips />} eyebrow="Results" title="Recruiting teams that made the switch." />
           <div className="mt-14 space-y-4">
             <Stats items={homeStats} />
             <Quotes items={homeQuotes} />
@@ -117,8 +129,11 @@ export default function HomePage() {
         </div>
       </section>
 
+      <Divider />
       <FounderNote />
+      <Divider />
       <Compliance />
+      <Divider />
       <CtaBand />
     </>
   );

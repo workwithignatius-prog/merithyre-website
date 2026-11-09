@@ -3,6 +3,8 @@ import { CalendarCheck, Mail, MapPin, Phone } from "lucide-react";
 import { ContactForm } from "@/components/contact/contact-form";
 import { PageHero } from "@/components/sections/page-hero";
 import { Swash } from "@/components/ui/swash";
+import { Glow } from "@/components/ui/decor";
+import { ContactHeroChips } from "@/components/sections/heading-chips";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -30,16 +32,18 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
+        decor={<ContactHeroChips />}
         eyebrow="Contact"
         title={<Swash>Let&apos;s talk.</Swash>}
         body="Book a demo, ask a product question or talk partnerships. We're a small team and we respond to everything."
       />
-      <section className="px-5 pb-24 sm:px-6 sm:pb-32">
-        <div className="mx-auto grid max-w-[1100px] grid-cols-1 gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+      <section className="relative px-5 pb-24 sm:px-6 sm:pb-32">
+        <Glow color="teal" className="right-0 top-10 h-[520px] w-[720px]" />
+        <div className="relative mx-auto grid max-w-[1100px] grid-cols-1 gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
           <ul className="grid content-start gap-3">
             {options.map((o) => (
-              <li key={o.title} className="card flex gap-4 p-5">
-                <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-mh-300">
+              <li key={o.title} className="card group flex gap-4 p-5 transition-[translate,border-color] duration-300 hover:-translate-y-0.5 hover:border-white/20">
+                <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-mh-300 transition-[scale,background-color] duration-300 group-hover:scale-110 group-hover:bg-mh-400/15">
                   <o.icon aria-hidden className="size-5" />
                 </span>
                 <div className="min-w-0">

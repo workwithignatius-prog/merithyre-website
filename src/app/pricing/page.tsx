@@ -3,6 +3,9 @@ import { PricingTabs } from "@/components/pricing/pricing-tabs";
 import { PageHero } from "@/components/sections/page-hero";
 import { Swash } from "@/components/ui/swash";
 import { Faq } from "@/components/sections/faq";
+import { PricingHeroChips } from "@/components/sections/heading-chips";
+import { HelpCard } from "@/components/sections/help-card";
+import { Divider, Glow } from "@/components/ui/decor";
 import { CtaBand } from "@/components/sections/cta-band";
 import { JsonLd } from "@/components/seo/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -31,6 +34,7 @@ export default function PricingPage() {
         }}
       />
       <PageHero
+        decor={<PricingHeroChips />}
         eyebrow="Pricing"
         title={
           <>
@@ -51,13 +55,16 @@ export default function PricingPage() {
         <PricingTabs />
       </section>
 
-      <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1180px]">
+      <Divider />
+
+      <section className="relative px-5 py-16 sm:px-6 sm:py-24">
+        <div className="relative mx-auto max-w-[1180px]">
+          <Glow color="green" className="left-1/2 top-1/3 h-[420px] w-[880px] -translate-x-1/2" />
           <SectionHeading eyebrow="Every plan" title="The whole pipeline. On every plan." />
           <ul className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
             {includedEverywhere.map((f) => (
-              <li key={f.title} className="reveal flex items-start gap-4 bg-canvas p-6 sm:p-7">
-                <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-mh-300">
+              <li key={f.title} className="reveal group flex items-start gap-4 bg-canvas p-6 transition-colors duration-300 hover:bg-[#0f1012] sm:p-7">
+                <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-mh-300 transition-[scale,border-color,background-color] duration-300 group-hover:scale-110 group-hover:border-mh-400/40 group-hover:bg-mh-400/10">
                   <f.icon aria-hidden className="size-5" />
                 </span>
                 <span>
@@ -70,20 +77,26 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-6 sm:py-28">
+      <Divider />
+
+      <section className="px-5 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
-          <SectionHeading
-            align="left"
-            eyebrow="FAQ"
-            title="Pricing questions, answered."
-            body="Anything else? We're a small team and we reply within one business day."
-          />
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <SectionHeading
+              align="left"
+              eyebrow="FAQ"
+              title="Pricing questions, answered."
+              body="Anything else? We're a small team and we reply within one business day."
+            />
+            <HelpCard className="mt-8" />
+          </div>
           <div className="reveal">
             <Faq items={pricingFaqs} />
           </div>
         </div>
       </section>
 
+      <Divider />
       <CtaBand />
     </>
   );

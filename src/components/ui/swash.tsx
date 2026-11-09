@@ -6,9 +6,9 @@ import { cn } from "@/lib/cn";
  * to sunrise amber (human), and draws itself in once on load.
  * The gradient (#swash-gradient) is defined once in the root layout.
  */
-export function Swash({ children, className, wrap }: { children: ReactNode; className?: string; wrap?: boolean }) {
+export function Swash({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <span className={cn("relative inline-block", wrap ? "whitespace-normal" : "whitespace-nowrap", className)}>
+    <span className={cn("relative inline-block whitespace-nowrap", className)}>
       <span className="relative z-10">{children}</span>
       <svg
         aria-hidden

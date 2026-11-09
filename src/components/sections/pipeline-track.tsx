@@ -1,7 +1,7 @@
 import { stages } from "@/content/pipeline";
 import { cn } from "@/lib/cn";
 
-/** The 7-stage pipeline. Green = AI-run, amber = the human decision. */
+/** The 7-stage pipeline. Green = AI-run, amber = the human decision. Stages lift on hover. */
 export function PipelineTrack() {
   return (
     <div className="reveal">
@@ -25,19 +25,23 @@ export function PipelineTrack() {
         <div aria-hidden className="absolute bottom-7 left-7 top-7 w-px bg-white/[0.12] lg:hidden" />
 
         {stages.map((s) => (
-          <li key={s.n} className="relative flex items-start gap-5 lg:flex-col lg:items-center lg:gap-0 lg:text-center">
+          <li key={s.n} className="group relative flex cursor-default items-start gap-5 lg:flex-col lg:items-center lg:gap-0 lg:text-center">
             <div
               className={cn(
-                "relative z-10 grid size-14 shrink-0 place-items-center rounded-2xl border bg-panel",
-                s.human ? "border-sun-400/60 bg-sun-400/10 text-sun-300" : "border-white/[0.12] text-mh-300",
+                "relative z-10 grid size-14 shrink-0 place-items-center rounded-2xl border bg-panel transition-[translate,border-color,background-color,color] duration-300 group-hover:-translate-y-1.5",
+                s.human
+                  ? "border-sun-400/60 bg-sun-400/10 text-sun-300 group-hover:border-sun-300 group-hover:bg-sun-400/20"
+                  : "border-white/[0.12] text-mh-300 group-hover:border-mh-300/70 group-hover:bg-mh-400/10",
               )}
             >
-              <s.icon aria-hidden className="size-6" />
+              <s.icon aria-hidden className="size-6 transition-transform duration-300 group-hover:scale-110" />
             </div>
             <div className="pt-1 lg:pt-4">
               <p className={cn("text-xs font-medium", s.human ? "text-sun-300" : "text-subtle")}>{s.human ? `${s.n} · You` : s.n}</p>
               <h3 className="mt-1 font-sans text-[15px] font-semibold tracking-[-0.01em] text-fg">{s.title}</h3>
-              <p className="mt-1.5 text-[13.5px] leading-snug text-muted lg:mx-auto lg:max-w-[150px]">{s.short}</p>
+              <p className="mt-1.5 text-[13.5px] leading-snug text-muted transition-colors duration-300 group-hover:text-white/85 lg:mx-auto lg:max-w-[150px]">
+                {s.short}
+              </p>
             </div>
           </li>
         ))}

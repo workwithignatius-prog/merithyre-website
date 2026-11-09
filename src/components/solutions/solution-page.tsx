@@ -7,11 +7,15 @@ import { Quotes } from "@/components/sections/quotes";
 import { SegmentCards } from "@/components/sections/segment-cards";
 import { Stats } from "@/components/sections/stats";
 import { CtaBand } from "@/components/sections/cta-band";
+import { OvernightChips, ResultsChips } from "@/components/sections/heading-chips";
+import { Divider, Glow } from "@/components/ui/decor";
 import { site } from "@/content/site";
 import type { Segment } from "@/content/segments";
 import { SegmentVisual } from "./segment-visual";
 
 export function SolutionPage({ segment }: { segment: Segment }) {
+  const lead = segment.hero.highlight.split(" ");
+  const lastWord = lead.pop();
   return (
     <>
       <section className="relative px-5 pb-16 pt-10 sm:px-6 sm:pb-24 sm:pt-16">
@@ -22,7 +26,7 @@ export function SolutionPage({ segment }: { segment: Segment }) {
             <h1 className="mt-4 font-display text-[clamp(2.7rem,5.6vw,4.6rem)] font-bold leading-[0.98] tracking-[-0.04em] text-fg">
               {segment.hero.title}
               <br />
-              <Swash wrap>{segment.hero.highlight}</Swash>
+              {lead.join(" ")} <Swash>{lastWord}</Swash>
             </h1>
             <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-muted sm:text-lg">{segment.hero.body}</p>
             <div className="mt-9 flex flex-wrap gap-3">
@@ -52,12 +56,15 @@ export function SolutionPage({ segment }: { segment: Segment }) {
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1180px]">
+      <Divider />
+
+      <section className="relative px-5 py-16 sm:px-6 sm:py-24">
+        <div className="relative mx-auto max-w-[1180px]">
+          <Glow color="amber" className="-left-40 top-1/4 h-[460px] w-[600px]" />
           <SectionHeading eyebrow="The problem" title="Sound familiar? Here's the fix." />
           <ul className="mt-14 grid grid-cols-1 gap-4 lg:grid-cols-3 lg:grid-rows-[auto_auto]">
             {segment.problems.map((p) => (
-              <li key={p.before} className="reveal card flex flex-col overflow-hidden lg:row-span-2 lg:grid lg:grid-rows-subgrid lg:gap-0">
+              <li key={p.before} className="reveal card flex flex-col overflow-hidden transition-[border-color,translate] duration-300 hover:-translate-y-1 hover:border-white/20 lg:row-span-2 lg:grid lg:grid-rows-subgrid lg:gap-0">
                 <div className="p-6 sm:p-7">
                   <p className="flex items-center gap-2 text-xs font-medium text-subtle">
                     <X aria-hidden className="size-3.5" />
@@ -80,9 +87,13 @@ export function SolutionPage({ segment }: { segment: Segment }) {
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1180px]">
+      <Divider />
+
+      <section className="relative px-5 py-16 sm:px-6 sm:py-24">
+        <div className="relative mx-auto max-w-[1180px]">
+          <Glow color="green" className="left-1/2 top-1/2 h-[420px] w-[900px] -translate-x-1/2" />
           <SectionHeading
+            decor={<OvernightChips />}
             eyebrow="How it works"
             title={
               <>
@@ -97,16 +108,21 @@ export function SolutionPage({ segment }: { segment: Segment }) {
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto max-w-[1180px]">
-          <SectionHeading eyebrow="Customers" title="In their own words." />
+      <Divider />
+
+      <section className="relative px-5 py-16 sm:px-6 sm:py-24">
+        <div className="relative mx-auto max-w-[1180px]">
+          <Glow color="teal" className="-right-40 top-10 h-[440px] w-[620px]" />
+          <SectionHeading decor={<ResultsChips />} eyebrow="Customers" title="In their own words." />
           <div className="mt-14">
             <Quotes items={segment.quotes} />
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-6 sm:py-28">
+      <Divider />
+
+      <section className="px-5 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-[1180px]">
           <SectionHeading eyebrow="Also built for" title={
               <>
@@ -120,6 +136,7 @@ export function SolutionPage({ segment }: { segment: Segment }) {
         </div>
       </section>
 
+      <Divider />
       <CtaBand />
     </>
   );

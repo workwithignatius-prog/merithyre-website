@@ -73,7 +73,8 @@ export function Navbar() {
     closeTimer.current = setTimeout(() => setMenuOpen(false), 150);
   };
 
-  const linkCls = "relative flex h-10 items-center rounded-full px-4 text-[15px] font-medium transition-colors";
+  const linkCls =
+    "relative flex h-10 items-center rounded-full px-4 text-[15px] font-medium transition-colors after:absolute after:inset-x-4 after:bottom-1.5 after:h-px after:origin-center after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100";
 
   return (
     <header className="sticky top-3 z-50 px-3 pt-3 sm:px-5">
@@ -137,7 +138,7 @@ export function Navbar() {
           </li>
           {links.map((l) => (
             <li key={l.label}>
-              <NavLink href={l.href} className={cn(linkCls, pathname === l.href ? "text-white" : "text-white/75 hover:text-white")}>
+              <NavLink href={l.href} className={cn(linkCls, pathname === l.href ? "text-white after:scale-x-100" : "text-white/75 hover:text-white")}>
                 {l.label}
                 {l.sticker && (
                   <span

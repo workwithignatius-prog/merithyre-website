@@ -17,7 +17,7 @@ function PlanCard({ plan, dark }: { plan: Plan; dark?: boolean }) {
   return (
     <article
       className={cn(
-        "relative flex flex-col rounded-[22px] border p-7 sm:p-8",
+        "relative flex flex-col rounded-[22px] border p-7 transition-[translate,border-color] duration-300 hover:-translate-y-1 hover:border-white/30 sm:p-8",
         plan.featured
           ? "border-white/25 bg-panel-2"
           : dark
