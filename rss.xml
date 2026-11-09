@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MeritHyre Blog</title>
+    <link>https://merithyre.ai/blog/</link>
+    <description>Practical guides on AI recruiting, structured interviews, compliance and staffing workflows from the MeritHyre team.</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 02 Nov 2026 12:00:00 GMT</lastBuildDate>
+    <atom:link href="https://merithyre.ai/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Time-to-Hire vs Quality-of-Hire: Which Metric Should You Actually Track?</title>
+      <link>https://merithyre.ai/blog/time-to-hire-vs-quality-of-hire-which-metric-should-you-actually-track/</link>
+      <guid isPermaLink="true">https://merithyre.ai/blog/time-to-hire-vs-quality-of-hire-which-metric-should-you-actually-track/</guid>
+      <pubDate>Mon, 02 Nov 2026 12:00:00 GMT</pubDate>
+      <category>Talent Acquisition Strategy</category>
+      <description>A side-by-side look at the two hiring metrics, the warning signs that speed is winning over quality, and a five-step way to start measuring how good your hires really are.</description>
+    </item>
+    <item>
+      <title>Candidate Fraud in Hiring: Spot Fake Profiles and Proxies</title>
+      <link>https://merithyre.ai/blog/candidate-fraud-in-hiring-spot-fake-profiles-and-proxies/</link>
+      <guid isPermaLink="true">https://merithyre.ai/blog/candidate-fraud-in-hiring-spot-fake-profiles-and-proxies/</guid>
+      <pubDate>Mon, 02 Nov 2026 12:00:00 GMT</pubDate>
+      <category>Talent Acquisition Strategy</category>
+      <description>Deepfakes, proxy interviewees and invented profiles are reaching interview stages. Learn the warning signs and build a layered verification process that holds up.</description>
+    </item>
+    <item>
+      <title>AI Resume Screening vs Keyword Matching: Which Wins?</title>
+      <link>https://merithyre.ai/blog/ai-resume-screening-vs-keyword-matching-which-wins/</link>
+      <guid isPermaLink="true">https://merithyre.ai/blog/ai-resume-screening-vs-keyword-matching-which-wins/</guid>
+      <pubDate>Tue, 27 Oct 2026 12:00:00 GMT</pubDate>
+      <category>Automation guides</category>
+      <description>Exact-word filters and context-aware AI each have a place in screening. Compare how they handle synonyms, adjacent skills and fairness, and when a hybrid works best.</description>
+    </item>
+    <item>
+      <title>How to Write Job Descriptions That AI Can Screen Against</title>
+      <link>https://merithyre.ai/blog/how-to-write-job-descriptions-that-ai-can-screen-against/</link>
+      <guid isPermaLink="true">https://merithyre.ai/blog/how-to-write-job-descriptions-that-ai-can-screen-against/</guid>
+      <pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>
+      <category>Automation guides</category>
+      <description>A practical framework for AI-ready job descriptions: a shared taxonomy, a three-tier qualification hierarchy and outcome-based duties, plus a before-and-after rewrite.</description>
+    </item>
+    <item>
+      <title>Who Owns Candidate Data in AI Recruiting? Contract Clauses to Check</title>
+      <link>https://merithyre.ai/blog/who-owns-candidate-data-in-ai-recruiting-contract-clauses-to-check/</link>
+      <guid isPermaLink="true">https://merithyre.ai/blog/who-owns-candidate-data-in-ai-recruiting-contract-clauses-to-check/</guid>
+      <pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>
+      <category>AI Recruiting Compliance</category>
+      <description>Resumes, recordings, transcripts and match scores all flow to your AI recruiting vendor. These eight contract clauses decide who controls that data once you sign.</description>
+    </item>
+    <item>
+      <title>Structured Interview Scorecards: Templates and Best Practices Guide</title>
+      <link>https://merithyre.ai/blog/structured-interview-scorecards_-templates-and-best-practices-guide/</link>
+      <guid isPermaLink="true">https://merithyre.ai/blog/structured-interview-scorecards_-templates-and-best-practices-guide/</guid>
+      <pubDate>Wed, 14 Oct 2026 12:00:00 GMT</pubDate>
+      <category>Automation guides</category>
+      <description>What goes into a strong interview scorecard, from role outcomes and weighted competencies to anchored rating scales, with a free software engineer template to adapt.</description>
+    </item>
+    <item>
+      <title>AI Recruitment Automation: The Complete Guide to Fixing Hiring Bottlenecks</title>
+      <link>https://merithyre.ai/blog/ai-recruitment-automation-the-complete-guide-to-fixing-hiring-bottlenecks/</link>
+      <guid isPermaLink="true">https://merithyre.ai/blog/ai-recruitment-automation-the-complete-guide-to-fixing-hiring-bottlenecks/</guid>
+      <pubDate>Wed, 14 Oct 2026 12:00:00 GMT</pubDate>
+      <category>Automation guides</category>
+      <description>The capabilities that matter, use cases by team, how to evaluate platforms, a phased rollout plan and the KPIs that prove AI-native recruitment automation is working.</description>
+    </item>
+    <item>
+      <title>NYC Local Law 144 Compliance Checklist for AI Hiring Tools (2026)</title>
+      <link>https://merithyre.ai/blog/nyc-local-law-144-compliance-checklist-for-ai-hiring-tools-2026/</link>
+      <guid isPermaLink="true">https://merithyre.ai/blog/nyc-local-law-144-compliance-checklist-for-ai-hiring-tools-2026/</guid>
+      <pubDate>Fri, 25 Sep 2026 12:00:00 GMT</pubDate>
+      <category>Talent Acquisition Strategy</category>
+      <description>Five steps to meet New York City’s AI hiring law: map your tools, commission an independent bias audit, publish the summary, notify candidates and handle data requests.</description>
+    </item>
+    <item>
+      <title>AI-Native vs. Bolt-On AI Recruiting: What’s Actually Different?</title>
+      <link>https://merithyre.ai/blog/ai-native-vs-bolt-on-ai-recruiting-whats-actually-different/</link>
+      <guid isPermaLink="true">https://merithyre.ai/blog/ai-native-vs-bolt-on-ai-recruiting-whats-actually-different/</guid>
+      <pubDate>Fri, 25 Sep 2026 12:00:00 GMT</pubDate>
+      <category>Talent Acquisition Strategy</category>
+      <description>Bolt-on AI adds features to a legacy ATS; AI-native software is built around AI from the start. Here’s how the two differ in architecture, workflow, hidden costs and handoffs.</description>
+    </item>
+    <item>
+      <title>From Job Order to Ranked Shortlist: The AI-Native Staffing Workflow US Agencies Are Adopting</title>
+      <link>https://merithyre.ai/blog/from-job-order-to-ranked-shortlist-the-ai-native-staffing-workflow-us-agencies-are-adopting/</link>
+      <guid isPermaLink="true">https://merithyre.ai/blog/from-job-order-to-ranked-shortlist-the-ai-native-staffing-workflow-us-agencies-are-adopting/</guid>
+      <pubDate>Mon, 24 Aug 2026 12:00:00 GMT</pubDate>
+      <category>Talent Acquisition Strategy</category>
+      <description>How AI-native staffing workflows take a job order through sourcing, screening and ranking before a recruiter steps in, and why US agencies are making the switch now.</description>
+    </item>
+    <item>
+      <title>Every recruiter has felt it: You fill the role, and three months later you’re starting the exact same search from zero.</title>
+      <link>https://merithyre.ai/blog/every-recruiter-has-felt-it-you-fill-the-role-and-three-months-later-youre-starting-the-exact-same-search-from-zero/</link>
+      <guid isPermaLink="true">https://merithyre.ai/blog/every-recruiter-has-felt-it-you-fill-the-role-and-three-months-later-youre-starting-the-exact-same-search-from-zero/</guid>
+      <pubDate>Mon, 17 Aug 2026 12:00:00 GMT</pubDate>
+      <category>Talent Acquisition Strategy</category>
+      <description>Linear hiring funnels forget everything once a role closes, so every repeat search starts cold. Here’s what a loop-based model keeps, from runner-up candidates to post-hire data.</description>
+    </item>
+    <item>
+      <title>Why AI-Native Beats AI-Powered: The Architecture Difference That Changes Everything</title>
+      <link>https://merithyre.ai/blog/why-ai-native-beats-ai-powered-the-architecture-difference-that-changes-everything-2/</link>
+      <guid isPermaLink="true">https://merithyre.ai/blog/why-ai-native-beats-ai-powered-the-architecture-difference-that-changes-everything-2/</guid>
+      <pubDate>Mon, 17 Aug 2026 12:00:00 GMT</pubDate>
+      <category>AI &amp; Technology</category>
+      <description>AI-powered tools speed up the old recruiting workflow; AI-native platforms replace it. See what that architecture difference means for recruiters, compliance and your ATS.</description>
+    </item>
+  </channel>
+</rss>
