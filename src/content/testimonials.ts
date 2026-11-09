@@ -11,13 +11,13 @@ export const homeQuotes: Quote[] = [
   },
   {
     quote:
-      "MeritHyre screens everything now — same criteria every time. I finally have time to actually talk to candidates instead of filtering them.",
+      "MeritHyre screens everything now. Same criteria every time. I finally have time to actually talk to candidates instead of filtering them.",
     author: "HR Manager",
     company: "Logistics company",
   },
   {
     quote:
-      "MeritHyre is different — it's the first platform where AI actually conducts the interview, scores it, and gives my team a decision-ready brief.",
+      "MeritHyre is different: it's the first platform where AI actually conducts the interview, scores it, and gives my team a decision-ready brief.",
     author: "VP Talent Acquisition",
     company: "FinTech company",
   },

@@ -209,7 +209,26 @@ EDITORIAL = {
              '<h2 id="measure-the-hires-that-matter">Measure the Hires That Matter, Not Just the Speed</h2>'),
         ],
     },
+    "why-ai-native-beats-ai-powered-the-architecture-difference-that-changes-everything-2": {
+        # The site uses no em dashes; each one becomes the punctuation its sentence needs.
+        "replace": [
+            ("It\u2019s architecture \u2014 and it determines", "It\u2019s architecture, and it determines"),
+            ("don't require a recruiter \u2014 screening,", "don't require a recruiter: screening,"),
+            ("doing the work \u2014 not assisting", "doing the work, not assisting"),
+            ("you trigger \u2014 it\u2019s a continuous", "you trigger. It\u2019s a continuous"),
+            ("you configure \u2014 it\u2019s a structured", "you configure. It\u2019s a structured"),
+            ("assists with \u2014 it\u2019s something AI conducts", "assists with. It\u2019s something AI conducts"),
+            ("you generate \u2014 it appears", "you generate. It appears"),
+            ("actually are \u2014 from process managers", "actually are: from process managers"),
+            ("often opaque \u2014 there\u2019s no clean", "often opaque. There\u2019s no clean"),
+            ("your ATS \u2014 automating the work that happens between them \u2014 and pushes",
+             "your ATS, automating the work that happens between them, and pushes"),
+            ("AI features?\u201d \u2014 almost everything does.", "AI features?\u201d Almost everything does."),
+        ],
+    },
 }
+
+EM_DASH = "\u2014"
 
 # Pixel retouches on output images: boxes (left, top, right, bottom) in output pixels are
 # filled by blending the rows just above and below. The time-to-hire cover has a "Read the
@@ -782,7 +801,7 @@ def clean_blockquotes(soup) -> None:
         el.decompose()
     for cite in soup.find_all(class_="elementor-blockquote__author"):
         p = soup.new_tag("p")
-        p.string = f"— {text_of(cite)}"
+        p.string = text_of(cite)
         cite.replace_with(p)
 
 
@@ -1323,6 +1342,12 @@ def convert_post(ctx: Context, post: dict) -> dict:
         description, excerpt = auto_copy(first_paragraphs, 120, 160), auto_copy(first_paragraphs, 100, 220)
         ctx.warn(slug, "description/excerpt generated automatically; add hand-written copy to COPY")
     title, body, toc = apply_editorial(slug, title, body, toc)
+    for name, text in (("title", title), ("description", description), ("excerpt", excerpt), ("body", body)):
+        if EM_DASH in text:
+            at = text.index(EM_DASH)
+            raise ConversionError(
+                f"{slug}: em dash in the {name} ({text[max(0, at - 40):at + 40]!r}); add an EDITORIAL fix"
+            )
     if not 120 <= len(description) <= 160:
         ctx.warn(slug, f"description is {len(description)} chars (want 120-160)")
     if len(excerpt) > 230:

@@ -150,7 +150,7 @@ export const segments: Segment[] = [
     quotes: [
       {
         quote:
-          "We were managing 40 roles with 2 people. MeritHyre didn't just help — it changed what those 2 people could actually accomplish in a week.",
+          "We were managing 40 roles with 2 people. MeritHyre didn't just help. It changed what those 2 people could actually accomplish in a week.",
         author: "HR Director",
         company: "Kellerton Logistics",
       },
