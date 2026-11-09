@@ -142,21 +142,21 @@ export function PricingTabs() {
       </div>
 
       <div id="panel-agency" role="tabpanel" aria-labelledby="tab-agency" hidden={tab !== "agency"} className="mt-12">
-        <div className="mx-auto grid max-w-[980px] gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="mx-auto grid max-w-[980px] grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
           <PlanCard plan={agencyPlan} dark />
           <SeatCalculator />
         </div>
       </div>
 
       <div id="panel-inhouse" role="tabpanel" aria-labelledby="tab-inhouse" hidden={tab !== "inhouse"} className="mt-12">
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           {inHousePlans.map((p) => (
             <PlanCard key={p.name} plan={p} />
           ))}
         </div>
       </div>
 
-      <p className="mt-10 text-center text-sm text-subtle">Prices in USD · No per-role or per-hire fees · No long-term contract</p>
+      <p className="mt-10 text-center text-sm text-subtle">Prices in USD · <span className="whitespace-nowrap">No per-role or per-hire fees</span> · <span className="whitespace-nowrap">No long-term contract</span></p>
     </div>
   );
 }

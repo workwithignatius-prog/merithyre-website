@@ -16,9 +16,8 @@ export function Hero() {
       <div className="relative mx-auto max-w-[1200px] text-center">
         <Eyebrow>AI-native recruitment automation</Eyebrow>
         <h1 className="mx-auto mt-6 max-w-5xl text-[clamp(2.75rem,7.2vw,5.75rem)] font-semibold leading-[0.95] tracking-[-0.055em]">
-          <span className="text-gradient">Hire at machine speed.</span>
-          <br />
-          <span className="text-gradient-brand">Decide like a human.</span>
+          <span className="text-gradient block">Hire at machine speed.</span>
+          <span className="text-gradient-brand block pb-1">Decide like a human.</span>
         </h1>
         <p className="mx-auto mt-7 max-w-2xl text-[17px] leading-relaxed text-muted sm:text-xl sm:leading-relaxed">
           MeritHyre sources, screens, ranks and interviews every applicant overnight, then hands your team a decision-ready shortlist.

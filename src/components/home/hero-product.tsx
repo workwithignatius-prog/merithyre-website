@@ -58,7 +58,7 @@ export function HeroProduct() {
             </span>
           </div>
 
-          <div className="grid lg:grid-cols-[minmax(0,1fr)_340px]">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px]">
             {/* left: funnel + ranked list */}
             <div className="p-4 sm:p-5 lg:border-r lg:border-white/[0.07]">
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">

@@ -11,7 +11,7 @@ function initials(text: string) {
 
 export function Quotes({ items }: { items: Quote[] }) {
   return (
-    <div className="grid gap-4 md:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
       {items.map((q) => (
         <figure key={q.quote} className="reveal card flex flex-col p-7">
           <svg aria-hidden viewBox="0 0 24 24" className="size-6 text-mh-400/70" fill="currentColor">

@@ -19,7 +19,7 @@ export function SolutionPage({ segment }: { segment: Segment }) {
           aria-hidden
           className="absolute left-[30%] top-[-260px] h-[560px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(18_196_125/0.2),transparent)] blur-3xl"
         />
-        <div className="relative mx-auto grid max-w-[1200px] items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="relative mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
           <div>
             <Eyebrow>{segment.hero.eyebrow}</Eyebrow>
             <h1 className="mt-6 text-[clamp(2.6rem,6vw,4.6rem)] font-semibold leading-[0.97] tracking-[-0.05em]">
@@ -58,9 +58,9 @@ export function SolutionPage({ segment }: { segment: Segment }) {
       <section className="px-5 py-20 sm:px-6 sm:py-28">
         <div className="mx-auto max-w-[1200px]">
           <SectionHeading eyebrow="The problem" title="Sound familiar? Here's the fix." />
-          <ul className="mt-14 grid gap-4 lg:grid-cols-3">
+          <ul className="mt-14 grid grid-cols-1 gap-4 lg:grid-cols-3 lg:grid-rows-[auto_auto]">
             {segment.problems.map((p) => (
-              <li key={p.before} className="reveal card flex flex-col overflow-hidden">
+              <li key={p.before} className="reveal card flex flex-col overflow-hidden lg:row-span-2 lg:grid lg:grid-rows-subgrid lg:gap-0">
                 <div className="p-6 sm:p-7">
                   <p className="flex items-center gap-2 text-xs font-medium text-subtle">
                     <X aria-hidden className="size-3.5" />
@@ -69,7 +69,7 @@ export function SolutionPage({ segment }: { segment: Segment }) {
                   <h3 className="mt-3 text-lg font-semibold tracking-[-0.02em] text-muted line-through decoration-white/25">{p.before}</h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-subtle">{p.beforeBody}</p>
                 </div>
-                <div className="mt-auto border-t border-mh-400/20 bg-mh-400/[0.05] p-6 sm:p-7">
+                <div className="mt-auto border-t border-mh-400/20 lg:mt-0 bg-mh-400/[0.05] p-6 sm:p-7">
                   <p className="flex items-center gap-2 text-xs font-medium text-mh-300">
                     <Check aria-hidden className="size-3.5" />
                     With MeritHyre
@@ -111,7 +111,12 @@ export function SolutionPage({ segment }: { segment: Segment }) {
 
       <section className="px-5 py-20 sm:px-6 sm:py-28">
         <div className="mx-auto max-w-[1200px]">
-          <SectionHeading eyebrow="Also built for" title="One pipeline. Every kind of hiring team." />
+          <SectionHeading eyebrow="Also built for" title={
+              <>
+                One pipeline.
+                <br className="hidden sm:inline" /> Every kind of hiring team.
+              </>
+            } />
           <div className="mt-14">
             <SegmentCards exclude={segment.slug} />
           </div>

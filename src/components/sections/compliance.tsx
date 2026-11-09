@@ -70,7 +70,7 @@ export function Compliance() {
           </p>
         </div>
 
-        <div className="mt-12 grid items-start gap-12 lg:grid-cols-2">
+        <div className="mt-12 grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
           <div className="reveal">
             <ul className="grid gap-2.5 sm:grid-cols-2">
               {regulations.map((r) => (

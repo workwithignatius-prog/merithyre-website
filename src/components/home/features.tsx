@@ -139,9 +139,9 @@ export function Features() {
           title="Everything between the job post and the hire."
           body="One AI-native system, not a stack of bolt-ons. Your team stays in control of every decision."
         />
-        <div className="mt-16 grid gap-4 lg:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-4 lg:grid-cols-3">
           <SpotlightCard className="reveal p-6 sm:p-8 lg:col-span-2">
-            <div className="grid items-center gap-8 md:grid-cols-[0.85fr_1fr]">
+            <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)]">
               <CardText
                 icon={Mic}
                 title="AI interviews, any hour"

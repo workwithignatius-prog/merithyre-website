@@ -42,7 +42,7 @@ export default function AboutPage() {
       </section>
 
       <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-12 lg:grid-cols-2">
           <SectionHeading align="left" eyebrow="Our origin" title="We didn't read about the problem. We lived it." />
           <div className="reveal space-y-5 text-[17px] leading-relaxed text-muted">
             <p>
@@ -63,7 +63,7 @@ export default function AboutPage() {
       <section className="px-5 py-20 sm:px-6 sm:py-28">
         <div className="reveal relative mx-auto max-w-[1200px] overflow-hidden rounded-[28px] border border-white/10 bg-panel px-6 py-16 sm:px-14 sm:py-20">
           <div aria-hidden className="absolute -right-40 -top-40 size-[520px] rounded-full bg-[radial-gradient(closest-side,rgb(52_227_156/0.18),transparent)] blur-2xl" />
-          <div className="relative grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+          <div className="relative grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <p className="text-sm font-medium text-mh-300">Our mission</p>
               <h2 className="text-gradient mt-4 text-[clamp(2rem,4.4vw,3.4rem)] font-semibold leading-[1.02] tracking-[-0.045em]">
@@ -110,7 +110,7 @@ export default function AboutPage() {
       <section className="px-5 py-20 sm:px-6 sm:py-28">
         <div className="mx-auto max-w-[1200px]">
           <SectionHeading eyebrow="What we believe" title="The principles we build by." />
-          <ol className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <ol className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {principles.map((p, i) => (
               <li key={p.title} className="reveal card p-7">
                 <span className="text-sm font-medium tabular-nums text-mh-400">0{i + 1}</span>

@@ -34,7 +34,7 @@ export default function ContactPage() {
         body="Book a demo, ask a product question or talk partnerships. We're a small team and we respond to everything."
       />
       <section className="px-5 pb-24 sm:px-6 sm:pb-32">
-        <div className="mx-auto grid max-w-[1100px] gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="mx-auto grid max-w-[1100px] grid-cols-1 gap-6 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
           <ul className="grid content-start gap-3">
             {options.map((o) => (
               <li key={o.title} className="card flex gap-4 p-5">

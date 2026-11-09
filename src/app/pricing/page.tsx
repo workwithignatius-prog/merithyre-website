@@ -38,7 +38,12 @@ export default function PricingPage() {
             <span className="text-gradient-brand">Serious hiring.</span>
           </>
         }
-        body="Every plan includes the full AI pipeline. No long-term contracts, no per-role fees."
+        body={
+          <>
+            Every plan includes the full AI pipeline. <span className="whitespace-nowrap">No long-term contracts,</span>{" "}
+            <span className="whitespace-nowrap">no per-role fees.</span>
+          </>
+        }
       />
 
       <section className="px-5 pb-20 sm:px-6 sm:pb-28">
@@ -48,7 +53,7 @@ export default function PricingPage() {
       <section className="px-5 py-20 sm:px-6 sm:py-28">
         <div className="mx-auto max-w-[1200px]">
           <SectionHeading eyebrow="Every plan" title="The whole pipeline. On every plan." />
-          <ul className="mt-14 grid gap-px overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
             {includedEverywhere.map((f) => (
               <li key={f.title} className="reveal flex items-start gap-4 bg-canvas p-6 sm:p-7">
                 <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-mh-300">
@@ -65,7 +70,7 @@ export default function PricingPage() {
       </section>
 
       <section className="px-5 py-20 sm:px-6 sm:py-28">
-        <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
           <SectionHeading
             align="left"
             eyebrow="FAQ"

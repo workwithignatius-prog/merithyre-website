@@ -6,7 +6,7 @@ import { segments } from "@/content/segments";
 export function SegmentCards({ exclude }: { exclude?: string }) {
   const list = segments.filter((s) => s.slug !== exclude);
   return (
-    <div className={list.length === 4 ? "grid gap-4 sm:grid-cols-2 lg:grid-cols-4" : "grid gap-4 sm:grid-cols-3"}>
+    <div className={list.length === 4 ? "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4" : "grid grid-cols-1 gap-4 sm:grid-cols-3"}>
       {list.map((s) => (
         <SpotlightCard key={s.slug} className="reveal group">
           <Link href={s.href} className="flex h-full flex-col p-6">

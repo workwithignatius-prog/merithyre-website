@@ -121,6 +121,7 @@ export function Navbar() {
                         <Link
                           key={s.slug}
                           href={s.href}
+                          onClick={() => setMenuOpen(false)}
                           className="group flex gap-3 rounded-xl p-3 transition-colors hover:bg-white/[0.05]"
                         >
                           <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/[0.04] text-mh-400">
@@ -135,7 +136,11 @@ export function Navbar() {
                     </div>
                     <div className="mt-1 flex items-center justify-between rounded-xl bg-white/[0.03] px-4 py-3 text-[13px] text-muted">
                       <span>Every plan includes the full AI pipeline</span>
-                      <Link href="/pricing/" className="group inline-flex items-center gap-1 font-medium text-mh-300 hover:text-mh-200">
+                      <Link
+                        href="/pricing/"
+                        onClick={() => setMenuOpen(false)}
+                        className="group inline-flex items-center gap-1 font-medium text-mh-300 hover:text-mh-200"
+                      >
                         From $99/mo
                         <ArrowRight aria-hidden className="size-3.5 transition-transform group-hover:translate-x-0.5" />
                       </Link>
@@ -163,7 +168,7 @@ export function Navbar() {
           <Link href="/contact-us/" className="hidden h-9 items-center rounded-full px-3.5 text-sm text-muted transition-colors hover:text-fg sm:flex">
             Contact
           </Link>
-          <ButtonLink href={site.demoHref} size="sm" className="hidden sm:inline-flex">
+          <ButtonLink href={site.demoHref} size="sm" className="max-[360px]:hidden">
             Book a demo
           </ButtonLink>
           <button
