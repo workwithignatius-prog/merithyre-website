@@ -1,4 +1,4 @@
-import { CalendarCheck, Clock3, FileCheck2, Mic, RefreshCw, UserCheck } from "lucide-react";
+import { CalendarCheck, Check, Clock3, FileCheck2, Megaphone, Mic, RefreshCw, ShieldCheck, UserCheck } from "lucide-react";
 import { ChipText, FloatChip } from "@/components/ui/decor";
 
 /*
@@ -27,21 +27,69 @@ export function OvernightChips() {
   );
 }
 
+/*
+ * "Everything between the job post and the hire": the pipeline in six fragments,
+ * early steps on the left (post, gate questions, fit score), later steps on the
+ * right (audit trail, interview, your approval). Staggered so neither side is a column.
+ */
+const shortlist = [
+  { initials: "MD", bg: "bg-[#0f4a27]" },
+  { initials: "KA", bg: "bg-[#1b6f73]" },
+  { initials: "PN", bg: "bg-[#6b3f0c]" },
+];
+
 export function PlatformChips() {
   return (
     <>
-      <FloatChip className={L} tilt="left" delay={1}>
+      <FloatChip className="left-0 -top-12" angle={-5}>
+        <span className={`${iconBox} bg-white/[0.06] text-white/80`}>
+          <Megaphone className="size-[18px]" />
+        </span>
+        <ChipText top="Job post live" bottom="LinkedIn · Indeed · 2 more" />
+      </FloatChip>
+      <FloatChip className="left-20 top-[36%]" angle={3} delay={1}>
         <span className="text-xs text-muted">Fit</span>
         <span className="font-display text-2xl font-bold leading-none text-fg">94</span>
         <span className="h-1.5 w-16 overflow-hidden rounded-full bg-white/10">
           <span className="block h-full w-[94%] rounded-full bg-mh-400" />
         </span>
       </FloatChip>
-      <FloatChip className={R} tilt="right" delay={3.5}>
+      <FloatChip className="left-6 -bottom-8" shape="pill" angle={-3} delay={2.2}>
+        <span className="grid size-6 place-items-center rounded-full bg-mh-400/15 text-mh-300">
+          <Check className="size-3.5" strokeWidth={3} />
+        </span>
+        <span className="font-medium">Gate questions</span>
+        <span className="text-muted">3/3 passed</span>
+      </FloatChip>
+
+      <FloatChip className="right-16 -top-9" shape="pill" angle={4} delay={3}>
+        <span className="grid size-6 place-items-center rounded-full bg-white/[0.06] text-mh-300">
+          <ShieldCheck className="size-3.5" />
+        </span>
+        <span className="font-medium">Audit trail</span>
+        <span className="text-muted">every score logged</span>
+      </FloatChip>
+      <FloatChip className="right-0 top-[30%]" angle={-3} delay={3.5}>
         <span className={`${iconBox} bg-mh-400/15 text-mh-300`}>
           <Mic className="size-[18px]" />
         </span>
         <ChipText top="Voice interview" bottom="18 min · scored 4/5" />
+      </FloatChip>
+      <FloatChip className="right-10 -bottom-8" tone="amber" angle={4} delay={4.5}>
+        <span className="flex -space-x-1">
+          {shortlist.map((p) => (
+            <span
+              key={p.initials}
+              className={`grid size-7 place-items-center rounded-full text-[9px] font-semibold tracking-tight text-white ring-2 ring-sun-400 ${p.bg}`}
+            >
+              {p.initials}
+            </span>
+          ))}
+        </span>
+        <span className="leading-tight">
+          <span className="block font-semibold">Your call</span>
+          <span className="block text-xs text-[#2b1c04]/75">3 ready to approve</span>
+        </span>
       </FloatChip>
     </>
   );
@@ -56,7 +104,7 @@ export function SolutionsChips() {
         </span>
         <ChipText top="Bullhorn" bottom="Synced · 2 min ago" />
       </FloatChip>
-      <FloatChip className={`${R} border-transparent bg-mh-400 text-[#062012] hover:border-transparent hover:bg-mh-300`} tilt="right" delay={4}>
+      <FloatChip className={R} tone="green" tilt="right" delay={4}>
         <span className="font-display text-base font-bold">From $99/mo</span>
       </FloatChip>
     </>

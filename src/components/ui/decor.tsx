@@ -22,30 +22,49 @@ export function Glow({ className, color = "green" }: { className?: string; color
   );
 }
 
+const chipTones = {
+  dark: "border-white/10 bg-[#141517]/90 text-fg hover:border-white/25 hover:bg-[#191a1d]",
+  green: "border-transparent bg-mh-400 text-[#062012] hover:bg-mh-300",
+  amber: "border-transparent bg-sun-400 text-[#2b1c04] hover:bg-sun-300",
+} as const;
+
+const chipShapes = {
+  card: "gap-3 rounded-2xl px-4 py-3",
+  pill: "gap-2 rounded-full py-2 pr-3.5 pl-2",
+} as const;
+
 /**
  * Small product fragment that floats beside a centred heading (wide screens only).
- * Tilted at rest; straightens when hovered.
+ * Tilted at rest; straightens when hovered. `angle` (degrees) overrides `tilt`.
  */
 export function FloatChip({
   children,
   className,
   tilt = "left",
+  angle,
   delay = 0,
+  tone = "dark",
+  shape = "card",
 }: {
   children: ReactNode;
   className?: string;
   tilt?: "left" | "right";
+  angle?: number;
   delay?: number;
+  tone?: keyof typeof chipTones;
+  shape?: keyof typeof chipShapes;
 }) {
+  const deg = angle ?? (tilt === "left" ? -5 : 4);
   return (
     <div
       aria-hidden
       className={cn(
-        "animate-float absolute z-10 hidden items-center gap-3 rounded-2xl border border-white/10 bg-[#141517]/90 px-4 py-3 text-[13px] text-fg shadow-[0_24px_50px_-24px_rgb(0_0_0/0.9)] backdrop-blur transition-[rotate,border-color,background-color] duration-500 ease-out hover:rotate-0 hover:border-white/25 hover:bg-[#191a1d] xl:flex",
-        tilt === "left" ? "-rotate-[5deg]" : "rotate-[4deg]",
+        "animate-float absolute z-10 hidden items-center border text-[13px] shadow-[0_24px_50px_-24px_rgb(0_0_0/0.9)] backdrop-blur rotate-(--chip-tilt) transition-[rotate,border-color,background-color] duration-500 ease-out hover:rotate-0 xl:flex",
+        chipTones[tone],
+        chipShapes[shape],
         className,
       )}
-      style={{ animationDelay: `${-delay}s` } as CSSProperties}
+      style={{ animationDelay: `${-delay}s`, "--chip-tilt": `${deg}deg` } as CSSProperties}
     >
       {children}
     </div>
