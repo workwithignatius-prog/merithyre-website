@@ -159,6 +159,25 @@
     radial-gradient(42% 50% at 8% 0%, rgb(27 111 115 / 0.16), transparent 70%);
 }
 
+/*
+ * Logo light sweep: a band of light crosses the logo once when it is hovered or
+ * focused. The band lives inside the logo's SVG, clipped to the icon and letters;
+ * these are SVG user units, so the distance scales with the logo.
+ */
+@layer components {
+  .logo-sweep {
+    transform: translateX(-130px);
+  }
+  .group:hover .logo-sweep,
+  .group:focus-visible .logo-sweep {
+    animation: logo-sweep 0.9s cubic-bezier(0.45, 0, 0.2, 1) both;
+  }
+}
+@keyframes logo-sweep {
+  from { transform: translateX(-130px); }
+  to { transform: translateX(640px); }
+}
+
 /* Long-form article typography (blog posts), set on the light paper sheet. */
 @layer components {
   .article {

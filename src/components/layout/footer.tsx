@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { LogoMark } from "./logo";
+import { Logo, LogoOutline } from "./logo";
 import { FacebookIcon, LinkedInIcon, XIcon } from "@/components/ui/social-icons";
 import { footerNav } from "@/content/navigation";
 import { regulations, site } from "@/content/site";
@@ -25,16 +25,11 @@ export function Footer() {
     { href: site.socials.facebook, label: "Facebook", Icon: FacebookIcon },
   ];
   return (
-    <footer className="relative border-t border-white/[0.07] bg-[#040505]">
-      <div className="mx-auto max-w-[1180px] px-5 pt-16 pb-10 sm:px-6">
+    <footer className="relative overflow-hidden border-t border-white/[0.07] bg-[#040505]">
+      <div className="mx-auto max-w-[1180px] px-5 pt-16 sm:px-6">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,2fr)]">
           <div>
-            <Link href="/" aria-label="MeritHyre home" className="group flex items-center gap-2.5">
-              <LogoMark />
-              <span className="text-[19px] font-semibold tracking-[-0.035em]">
-                Merit<span className="text-mh-400">Hyre</span>
-              </span>
-            </Link>
+            <Logo height={30} />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted">
               AI-native recruitment automation, built by a team that spent 20 years running a staffing agency.
             </p>
@@ -105,6 +100,8 @@ export function Footer() {
             ))}
           </ul>
         </div>
+
+        <LogoOutline className="mt-14 sm:mt-20" />
       </div>
     </footer>
   );

@@ -1,10 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#0b9a61"/>
-      <stop offset="1" stop-color="#166534"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="16" fill="url(#g)"/>
-  <path d="M17 46V18h7.6L32 33.2 39.4 18H47v28h-6.6V29.6L34.6 41.4h-5.2L23.6 29.6V46z" fill="#fff"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="merithyre."><title>merithyre.</title><rect width="64" height="64" rx="16" fill="#166534"/><path transform="translate(-4.2 0) scale(0.82) translate(4 7)" d="M7.75 47V17H16.75V17.7927A14.375 14.375 0 0 1 32 20.6787A14.375 14.375 0 0 1 56.25 31.125V47H47.25V31.125A5.375 5.375 0 0 0 36.5 31.125V47H27.5V31.125A5.375 5.375 0 0 0 16.75 31.125V47Z" fill="#ffffff"/><circle cx="52.8" cy="39.1" r="5.6" fill="#f4ae45"/></svg>

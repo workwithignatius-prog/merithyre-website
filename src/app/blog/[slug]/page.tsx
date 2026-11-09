@@ -95,7 +95,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80">{post.excerpt}</p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-white/75">
               <span className="flex items-center gap-2.5">
-                <LogoMark className="size-7 rounded-[8px] text-sm" />
+                <LogoMark size={28} />
                 <span className="font-medium text-white">{blogAuthor.name}</span>
               </span>
               <span aria-hidden className="size-1 rounded-full bg-white/35" />
@@ -145,7 +145,7 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
                 <div className="article mx-auto max-w-[720px]" dangerouslySetInnerHTML={{ __html: withBaseHtml(post.html) }} />
 
                 <footer className="mx-auto mt-14 flex max-w-[720px] flex-col gap-5 rounded-2xl border border-black/[0.08] bg-white p-6 sm:flex-row sm:items-center">
-                  <LogoMark className="size-12 shrink-0 rounded-[12px] text-2xl" />
+                  <LogoMark size={48} />
                   <div className="flex-1">
                     <p className="font-semibold text-ink">Written by the {blogAuthor.name}</p>
                     <p className="mt-1 text-[15px] leading-relaxed text-ink-muted">

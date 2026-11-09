@@ -127,7 +127,7 @@ function GateVisual() {
 function SyncVisual() {
   return (
     <div aria-hidden className="relative flex items-center justify-between gap-4 rounded-2xl bg-white/[0.04] px-5 py-6">
-      <LogoMark className="size-11 text-xl" />
+      <LogoMark size={44} />
       <div className="relative h-px flex-1 overflow-hidden bg-white/15">
         <span className="animate-beam absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white to-transparent" />
       </div>

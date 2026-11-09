@@ -20,7 +20,7 @@ export function FounderNote() {
           <Label className="hidden lg:block">From the founders</Label>
           <div>
             <div className="flex items-center gap-4">
-              <LogoMark className="size-12 rounded-[12px] text-2xl" />
+              <LogoMark size={48} />
               <div>
                 <p className="font-semibold text-fg">The MeritHyre founding team</p>
                 <p className="text-sm text-muted">Former staffing agency directors</p>
