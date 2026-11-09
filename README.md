@@ -52,6 +52,9 @@ The 12 posts from the WordPress site were migrated into `src/content/blog/posts.
 table of contents, reading time) with their images converted to WebP in `public/blog/images/`.
 
 - **Re-import from WordPress:** `scripts/import-wordpress-posts.py` (requirements are listed at the top of the script).
+  Hand-made corrections live in the script's `EDITORIAL` and `RETOUCH` tables, so a re-import keeps them: a fixed title,
+  two swapped charts, in-body calls to action pointed at the demo/pricing pages, and the "Read the Full Blog" button
+  removed from the time-to-hire cover artwork.
 - **Add or edit a post:** edit `posts.json` (keep the same fields). The page, sitemap entry, RSS item and
   structured data are generated from it.
 - Body HTML is restricted to headings, paragraphs, lists, links, quotes, tables and images, and is styled by `.article`

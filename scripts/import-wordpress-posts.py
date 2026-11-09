@@ -169,6 +169,88 @@ COPY = {
 # Descriptive alt text, keyed by the image's original upload path (size and
 # edit suffixes removed). The WordPress alt texts mostly repeat the post title,
 # and two inline charts have none.
+# Editorial fixes applied after conversion. Every "replace" pair is an exact substring
+# of the converted body and must match exactly once (the import fails otherwise), so a
+# fix can never silently stop applying after the source changes.
+EDITORIAL = {
+    "ai-recruitment-automation-the-complete-guide-to-fixing-hiring-bottlenecks": {
+        # The WordPress title is missing the colon the on-page headline has.
+        "title": "AI Recruitment Automation: The Complete Guide to Fixing Hiring Bottlenecks",
+    },
+    "every-recruiter-has-felt-it-you-fill-the-role-and-three-months-later-youre-starting-the-exact-same-search-from-zero": {
+        # In the WordPress source, charts 1 and 4 sit next to each other's text.
+        "swap_images": [("search-from-zero-1", "search-from-zero-4")],
+    },
+    "nyc-local-law-144-compliance-checklist-for-ai-hiring-tools-2026": {
+        # In-body calls to action linked to the homepage; send them where the label points.
+        "replace": [
+            ('<a href="/">Check Your Compliance Status With MeritHyre \u2192</a>',
+             '<a href="/contact-us/?topic=demo">Check Your Compliance Status With MeritHyre \u2192</a>'),
+            ('<a href="/">Explore MeritHyre\u2019s Compliance Tools \u2192</a>',
+             '<a href="/#compliance">Explore MeritHyre\u2019s Compliance Tools \u2192</a>'),
+            ('<a href="/">Start Your Free MeritHyre Trial \u2192</a>',
+             '<a href="/contact-us/?topic=demo">Start Your Free MeritHyre Trial \u2192</a>'),
+        ],
+    },
+    "ai-native-vs-bolt-on-ai-recruiting-whats-actually-different": {
+        "replace": [
+            ('<a href="/">See MeritHyre in Action \u2192</a>', '<a href="/contact-us/?topic=demo">See MeritHyre in Action \u2192</a>'),
+            ('<a href="/">Start Building Your AI Pipeline for $99 \u2192</a>',
+             '<a href="/pricing/">Start Building Your AI Pipeline for $99 \u2192</a>'),
+            ('<a href="/">Get Started with MeritHyre Today \u2192</a>',
+             '<a href="/contact-us/?topic=demo">Get Started with MeritHyre Today \u2192</a>'),
+        ],
+    },
+    "time-to-hire-vs-quality-of-hire-which-metric-should-you-actually-track": {
+        # The closing call to action follows the FAQ questions as an h3 and reads like
+        # another question; make it a section of its own (it then appears in the TOC).
+        "replace": [
+            ("<h3>Measure the Hires That Matter, Not Just the Speed</h3>",
+             '<h2 id="measure-the-hires-that-matter">Measure the Hires That Matter, Not Just the Speed</h2>'),
+        ],
+    },
+}
+
+# Pixel retouches on output images: boxes (left, top, right, bottom) in output pixels are
+# filled by blending the rows just above and below. The time-to-hire cover has a "Read the
+# Full Blog" button baked into the artwork, which reads oddly on the post itself.
+RETOUCH = {
+    "time-to-hire-vs-quality-cover": [(64, 708, 486, 816)],
+}
+
+
+def retouch(im, boxes):
+    px = im.load()
+    for left, top, right, bottom in boxes:
+        for x in range(left, right):
+            above, below = px[x, top - 1], px[x, bottom]
+            span = bottom - top + 1
+            for y in range(top, bottom):
+                f = (y - top + 1) / span
+                px[x, y] = tuple(round(above[c] * (1 - f) + below[c] * f) for c in range(len(above)))
+    return im
+
+
+def apply_editorial(slug: str, title: str, body: str, toc: list) -> tuple:
+    fix = EDITORIAL.get(slug)
+    if not fix:
+        return title, body, toc
+    title = fix.get("title", title)
+    for old, new in fix.get("replace", []):
+        count = body.count(old)
+        if count != 1:
+            raise ConversionError(f"{slug}: editorial fix matched {count} times: {old[:60]}")
+        body = body.replace(old, new)
+    for a, b in fix.get("swap_images", []):
+        tag = lambda name: re.search(r'<img[^>]*src="[^"]*/' + re.escape(name) + r'\.[a-z]+"[^>]*>', body)
+        ta, tb = tag(a), tag(b)
+        if not (ta and tb):
+            raise ConversionError(f"{slug}: images to swap not found: {a}, {b}")
+        body = body.replace(ta.group(0), "\0SWAP\0").replace(tb.group(0), ta.group(0)).replace("\0SWAP\0", tb.group(0))
+    toc = [{"id": m.group(1), "text": strip_html(m.group(2))} for m in re.finditer(r'<h2 id="([^"]+)">(.*?)</h2>', body, re.S)]
+    return title, body, toc
+
+
 ALT_TEXT = {
     # Featured images
     "2026/11/WhatsApp-Image-2026-10-31-at-1.30.33-AM.jpeg": "A time-to-hire card with a clock and rising bar chart set against a quality-of-hire card with a star and team icon",
@@ -437,6 +519,8 @@ def write_web_image(ctx: Context, data: bytes, base_name: str, source_url: str) 
             im = im.convert("RGB")
         if im.width > MAX_IMAGE_WIDTH:
             im = im.resize((MAX_IMAGE_WIDTH, round(im.height * MAX_IMAGE_WIDTH / im.width)), Image.LANCZOS)
+        if base_name in RETOUCH:
+            im = retouch(im, RETOUCH[base_name])
         buffer = io.BytesIO()
         if ctx.use_webp:
             ext = ".webp"
@@ -1238,6 +1322,7 @@ def convert_post(ctx: Context, post: dict) -> dict:
         first_paragraphs = " ".join(text_of(p) for p in root.find_all("p")[:3])
         description, excerpt = auto_copy(first_paragraphs, 120, 160), auto_copy(first_paragraphs, 100, 220)
         ctx.warn(slug, "description/excerpt generated automatically; add hand-written copy to COPY")
+    title, body, toc = apply_editorial(slug, title, body, toc)
     if not 120 <= len(description) <= 160:
         ctx.warn(slug, f"description is {len(description)} chars (want 120-160)")
     if len(excerpt) > 230:
