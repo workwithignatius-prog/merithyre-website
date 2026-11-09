@@ -15,14 +15,15 @@ export function PostCard({ post, feature, className }: { post: PostSummary; feat
         className,
       )}
     >
-      <div className={cn("relative overflow-hidden bg-panel-2", feature ? "aspect-[16/9] lg:aspect-auto lg:min-h-[340px]" : "aspect-[16/9]")}>
+      {/* Covers carry their own headline text, so show them whole (no cropping) on white, which matches their backgrounds. */}
+      <div className={cn("relative overflow-hidden bg-white", feature ? "aspect-[16/9] lg:aspect-auto lg:min-h-[340px]" : "aspect-[16/9]")}>
         <Image
           src={withBase(post.image.src)}
           alt={post.image.alt}
           width={post.image.width}
           height={post.image.height}
           sizes={feature ? "(min-width: 1024px) 640px, 100vw" : "(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"}
-          className="size-full object-cover transition-[scale] duration-700 ease-out group-hover:scale-[1.04]"
+          className="size-full object-contain transition-[scale] duration-700 ease-out group-hover:scale-[1.03]"
           {...(feature ? { fetchPriority: "high" as const } : {})}
         />
       </div>
