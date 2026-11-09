@@ -42,3 +42,7 @@ next-env.d.ts
 
 # allow the example env file
 !.env.example
+
+# Python bytecode (from running scripts/*.py)
+__pycache__/
+*.pyc
