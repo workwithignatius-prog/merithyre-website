@@ -4,6 +4,7 @@ import { GeistMono } from "geist/font/mono";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { site } from "@/content/site";
+import { ogImage } from "@/lib/metadata";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,6 +15,8 @@ export const metadata: Metadata = {
   },
   description: site.description,
   applicationName: site.name,
+  openGraph: { type: "website", siteName: site.name, images: [ogImage] },
+  twitter: { card: "summary_large_image", images: [ogImage.url] },
 };
 
 export const viewport: Viewport = {

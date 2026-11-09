@@ -15,7 +15,7 @@ const log = [
 export function AuditLog() {
   return (
     <div className="relative">
-      <div aria-hidden className="absolute -inset-8 rounded-[40px] bg-[radial-gradient(closest-side,rgb(52_227_156/0.14),transparent)] blur-2xl" />
+      <div aria-hidden className="absolute inset-0 rounded-[40px] bg-[radial-gradient(closest-side,rgb(52_227_156/0.14),transparent)] blur-2xl sm:-inset-8" />
       <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-[#08090c] shadow-[0_40px_100px_-40px_rgb(0_0_0/0.9)]">
         <div className="flex items-center justify-between border-b border-white/[0.07] px-5 py-3.5 text-xs">
           <span className="inline-flex items-center gap-2 text-muted">
