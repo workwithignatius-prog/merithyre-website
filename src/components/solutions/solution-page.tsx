@@ -2,13 +2,13 @@ import { Check, X } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 import { Label, SectionHeading } from "@/components/ui/section-heading";
 import { Swash } from "@/components/ui/swash";
-import { PipelineTrack } from "@/components/sections/pipeline-track";
+import { PipelineSection } from "@/components/sections/pipeline-section";
 import { Quotes } from "@/components/sections/quotes";
 import { SegmentCards } from "@/components/sections/segment-cards";
 import { Stats } from "@/components/sections/stats";
 import { CtaBand } from "@/components/sections/cta-band";
-import { OvernightChips, ResultsChips } from "@/components/sections/heading-chips";
-import { Divider, Glow } from "@/components/ui/decor";
+import { ResultsChips } from "@/components/sections/heading-chips";
+import { Glow } from "@/components/ui/decor";
 import { site } from "@/content/site";
 import type { Segment } from "@/content/segments";
 import { SegmentVisual } from "./segment-visual";
@@ -50,15 +50,14 @@ export function SolutionPage({ segment }: { segment: Segment }) {
         </div>
       </section>
 
-      <section className="px-5 pb-20 sm:px-6 sm:pb-28">
+      <section className="px-5 sm:px-6">
         <div className="mx-auto max-w-[1180px]">
           <Stats items={segment.stats} />
         </div>
       </section>
 
-      <Divider />
 
-      <section className="relative px-5 py-16 sm:px-6 sm:py-24">
+      <section className="relative px-5 py-14 sm:px-6 sm:py-20">
         <div className="relative mx-auto max-w-[1180px]">
           <Glow color="amber" className="-left-40 top-1/4 h-[460px] w-[600px]" />
           <SectionHeading eyebrow="The problem" title="Sound familiar? Here's the fix." />
@@ -87,30 +86,11 @@ export function SolutionPage({ segment }: { segment: Segment }) {
         </div>
       </section>
 
-      <Divider />
 
-      <section className="relative px-5 py-16 sm:px-6 sm:py-24">
-        <div className="relative mx-auto max-w-[1180px]">
-          <Glow color="green" className="left-1/2 top-1/2 h-[420px] w-[900px] -translate-x-1/2" />
-          <SectionHeading
-            decor={<OvernightChips />}
-            eyebrow="How it works"
-            title={
-              <>
-                Seven stages. AI runs six.
-                <br className="hidden sm:inline" /> You make the call.
-              </>
-            }
-          />
-          <div className="mt-16">
-            <PipelineTrack />
-          </div>
-        </div>
-      </section>
+      <PipelineSection />
 
-      <Divider />
 
-      <section className="relative px-5 py-16 sm:px-6 sm:py-24">
+      <section className="relative px-5 py-14 sm:px-6 sm:py-20">
         <div className="relative mx-auto max-w-[1180px]">
           <Glow color="teal" className="-right-40 top-10 h-[440px] w-[620px]" />
           <SectionHeading decor={<ResultsChips />} eyebrow="Customers" title="In their own words." />
@@ -120,9 +100,8 @@ export function SolutionPage({ segment }: { segment: Segment }) {
         </div>
       </section>
 
-      <Divider />
 
-      <section className="px-5 py-16 sm:px-6 sm:py-24">
+      <section className="px-5 py-14 sm:px-6 sm:py-20">
         <div className="mx-auto max-w-[1180px]">
           <SectionHeading eyebrow="Also built for" title={
               <>
@@ -136,7 +115,6 @@ export function SolutionPage({ segment }: { segment: Segment }) {
         </div>
       </section>
 
-      <Divider />
       <CtaBand />
     </>
   );

@@ -48,7 +48,7 @@ export function CtaBand({
   body = "See MeritHyre run one of your real roles in a 30-minute live demo. No setup. No commitment.",
 }: Props) {
   return (
-    <section className="px-5 py-16 sm:px-6 sm:py-24">
+    <section className="px-5 py-14 sm:px-6 sm:py-20">
       <div className="reveal bg-backdrop relative mx-auto max-w-[1180px] overflow-hidden rounded-[32px] px-6 py-16 sm:px-14 sm:py-20">
         <div aria-hidden className="absolute inset-0 bg-[linear-gradient(100deg,rgb(9_9_10/0.68)_0%,rgb(9_9_10/0.3)_55%,transparent_100%)]" />
         <ShortlistStack />

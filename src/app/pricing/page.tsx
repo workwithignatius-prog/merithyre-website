@@ -5,7 +5,7 @@ import { Swash } from "@/components/ui/swash";
 import { Faq } from "@/components/sections/faq";
 import { PricingHeroChips } from "@/components/sections/heading-chips";
 import { HelpCard } from "@/components/sections/help-card";
-import { Divider, Glow } from "@/components/ui/decor";
+import { Glow } from "@/components/ui/decor";
 import { CtaBand } from "@/components/sections/cta-band";
 import { JsonLd } from "@/components/seo/json-ld";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -51,13 +51,12 @@ export default function PricingPage() {
         }
       />
 
-      <section className="px-5 pb-20 sm:px-6 sm:pb-28">
+      <section className="px-5 pb-4 sm:px-6">
         <PricingTabs />
       </section>
 
-      <Divider />
 
-      <section className="relative px-5 py-16 sm:px-6 sm:py-24">
+      <section className="relative px-5 py-14 sm:px-6 sm:py-20">
         <div className="relative mx-auto max-w-[1180px]">
           <Glow color="green" className="left-1/2 top-1/3 h-[420px] w-[880px] -translate-x-1/2" />
           <SectionHeading eyebrow="Every plan" title="The whole pipeline. On every plan." />
@@ -77,9 +76,8 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <Divider />
 
-      <section className="px-5 py-16 sm:px-6 sm:py-24">
+      <section className="px-5 py-14 sm:px-6 sm:py-20">
         <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <SectionHeading
@@ -96,7 +94,6 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <Divider />
       <CtaBand />
     </>
   );

@@ -2,6 +2,7 @@ import { RefreshCw, ShieldCheck, UsersRound } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
 import { Swash } from "@/components/ui/swash";
 import { site } from "@/content/site";
+import { StackStrip } from "@/components/sections/stack-strip";
 import { DemoStage } from "./demo-stage";
 
 const badges = [
@@ -12,7 +13,7 @@ const badges = [
 
 export function Hero() {
   return (
-    <section className="relative px-5 pb-20 pt-10 sm:px-6 sm:pt-16 lg:pb-28">
+    <section className="relative px-5 pb-12 pt-10 sm:px-6 sm:pt-16 lg:pb-16">
       <div aria-hidden className="bg-atmosphere pointer-events-none absolute inset-x-0 -top-28 bottom-0" />
 
       <div className="relative mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-14 lg:grid-cols-[minmax(0,1.04fr)_minmax(0,1fr)] lg:gap-12">
@@ -52,6 +53,10 @@ export function Hero() {
         </div>
 
         <DemoStage />
+      </div>
+
+      <div className="relative mx-auto mt-16 max-w-[1180px] lg:mt-24">
+        <StackStrip />
       </div>
     </section>
   );

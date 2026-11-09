@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/hero";
 import { Features } from "@/components/home/features";
-import { StackStrip } from "@/components/sections/stack-strip";
-import { PipelineTrack } from "@/components/sections/pipeline-track";
+import { PipelineSection } from "@/components/sections/pipeline-section";
 import { SegmentCards } from "@/components/sections/segment-cards";
 import { Stats } from "@/components/sections/stats";
 import { Quotes } from "@/components/sections/quotes";
@@ -10,8 +9,8 @@ import { Compliance } from "@/components/sections/compliance";
 import { FounderNote } from "@/components/home/founder-note";
 import { CtaBand } from "@/components/sections/cta-band";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Divider, Glow } from "@/components/ui/decor";
-import { OvernightChips, ResultsChips, SolutionsChips } from "@/components/sections/heading-chips";
+import { Glow } from "@/components/ui/decor";
+import { ResultsChips, SolutionsChips } from "@/components/sections/heading-chips";
 import { JsonLd } from "@/components/seo/json-ld";
 import { homeQuotes } from "@/content/testimonials";
 import { agencyPlan, inHousePlans } from "@/content/pricing";
@@ -74,35 +73,18 @@ export default function HomePage() {
         }}
       />
       <Hero />
-      <Divider />
-      <StackStrip />
-      <Divider />
 
-      <section id="how-it-works" className="relative px-5 py-16 sm:px-6 sm:py-24">
-        <div className="relative mx-auto max-w-[1180px]">
-          <Glow color="green" className="left-1/2 top-1/2 h-[420px] w-[900px] -translate-x-1/2" />
-          <SectionHeading
-            decor={<OvernightChips />}
-            eyebrow="How it works"
-            title={
-              <>
-                Seven stages. AI runs six.
-                <br className="hidden sm:inline" /> You make the call.
-              </>
-            }
-            body="From job post to decision-ready report, without a single CV read by hand."
-          />
-          <div className="mt-16">
-            <PipelineTrack />
-          </div>
+      <section aria-label="MeritHyre at a glance" className="px-5 sm:px-6">
+        <div className="mx-auto max-w-[1180px]">
+          <Stats items={homeStats} />
         </div>
       </section>
 
-      <Divider />
-      <Features />
-      <Divider />
+      <PipelineSection id="how-it-works" body="From job post to decision-ready report, without a single CV read by hand." />
 
-      <section className="relative px-5 py-16 sm:px-6 sm:py-24">
+      <Features />
+
+      <section className="relative px-5 py-14 sm:px-6 sm:py-20">
         <div className="relative mx-auto max-w-[1180px]">
           <Glow color="amber" className="-right-40 top-10 h-[420px] w-[560px]" />
           <SectionHeading
@@ -117,23 +99,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      <Divider />
-      <section className="relative px-5 py-16 sm:px-6 sm:py-24">
+      <section className="relative px-5 py-14 sm:px-6 sm:py-20">
         <div className="relative mx-auto max-w-[1180px]">
           <Glow color="green" className="-left-40 top-1/3 h-[460px] w-[620px]" />
           <SectionHeading decor={<ResultsChips />} eyebrow="Results" title="Recruiting teams that made the switch." />
-          <div className="mt-14 space-y-4">
-            <Stats items={homeStats} />
+          <div className="mt-14">
             <Quotes items={homeQuotes} />
           </div>
         </div>
       </section>
 
-      <Divider />
       <FounderNote />
-      <Divider />
       <Compliance />
-      <Divider />
       <CtaBand />
     </>
   );

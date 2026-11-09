@@ -6,7 +6,6 @@ import { Announcement } from "@/components/layout/announcement";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { SwashDefs } from "@/components/ui/swash";
-import { PageFrame } from "@/components/ui/decor";
 import { site } from "@/content/site";
 import { ogImage } from "@/lib/metadata";
 import "./globals.css";
@@ -47,7 +46,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="grain flex min-h-dvh flex-col">
         <SwashDefs />
-        <PageFrame />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-black"

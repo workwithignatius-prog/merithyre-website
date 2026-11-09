@@ -1,32 +1,9 @@
 import type { CSSProperties, ReactNode } from "react";
-import { Plus } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 /*
- * Background structure. Everything here is decorative (aria-hidden) and lines up
- * with the 1180px content column used by every section.
+ * Decorative background pieces. Everything here is aria-hidden.
  */
-
-/** Two hairlines that follow the content edges down the whole page (desktop). */
-export function PageFrame() {
-  return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 hidden px-6 lg:block">
-      <div className="mx-auto h-full max-w-[1180px] border-x border-white/[0.05]" />
-    </div>
-  );
-}
-
-/** Section break: a hairline across the column with "+" marks where it meets the frame. */
-export function Divider({ className }: { className?: string }) {
-  return (
-    <div aria-hidden className={cn("px-5 sm:px-6", className)}>
-      <div className="relative mx-auto h-px max-w-[1180px] bg-white/[0.07]">
-        <Plus className="absolute -left-[7.5px] -top-[7.5px] size-[15px] text-white/30" strokeWidth={1.25} />
-        <Plus className="absolute -right-[7.5px] -top-[7.5px] size-[15px] text-white/30" strokeWidth={1.25} />
-      </div>
-    </div>
-  );
-}
 
 const glowColors = {
   green: "rgb(47 154 104 / 0.2)",

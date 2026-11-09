@@ -142,7 +142,7 @@ function SyncVisual() {
 
 export function Features() {
   return (
-    <section id="features" className="relative px-5 py-16 sm:px-6 sm:py-24">
+    <section id="features" className="relative px-5 py-14 sm:px-6 sm:py-20">
       <div className="relative mx-auto max-w-[1180px]">
         <Glow color="teal" className="-right-48 top-40 h-[520px] w-[680px]" />
         <SectionHeading

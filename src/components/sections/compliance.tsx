@@ -60,7 +60,7 @@ export function AuditLog() {
 
 export function Compliance() {
   return (
-    <section id="compliance" className="relative px-5 py-16 sm:px-6 sm:py-24">
+    <section id="compliance" className="relative px-5 py-14 sm:px-6 sm:py-20">
       <div className="relative mx-auto grid max-w-[1180px] grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:items-center lg:gap-14">
         <Glow color="teal" className="-left-48 top-24 h-[520px] w-[640px]" />
         <div className="reveal">

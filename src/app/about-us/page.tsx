@@ -5,7 +5,8 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { LogoMark } from "@/components/layout/logo";
 import { Swash } from "@/components/ui/swash";
-import { Divider, Glow } from "@/components/ui/decor";
+import { Glow } from "@/components/ui/decor";
+import { Stats } from "@/components/sections/stats";
 import { AboutHeroChips } from "@/components/sections/heading-chips";
 import { LateNightStack } from "@/components/about/late-night-stack";
 import { ButtonLink } from "@/components/ui/button";
@@ -36,26 +37,14 @@ export default function AboutPage() {
         body="MeritHyre was founded by a team that spent 20 years running a staffing and recruiting agency. We lived the problem before we built the solution."
       />
 
-      <section className="px-5 pb-20 sm:px-6 sm:pb-28">
-        <dl className="reveal mx-auto grid max-w-[1000px] overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.02] sm:grid-cols-3">
-          {aboutStats.map((s, i) => (
-            <div
-              key={s.label}
-              className={`group p-7 transition-colors duration-300 hover:bg-white/[0.035] ${i > 0 ? "border-t border-white/[0.07] sm:border-l sm:border-t-0" : ""}`}
-            >
-              <dt className="sr-only">{s.label}</dt>
-              <dd className="font-display text-[clamp(2.1rem,4vw,2.9rem)] font-bold leading-none tracking-[-0.04em] text-fg transition-[color,translate] duration-300 group-hover:-translate-y-0.5 group-hover:text-mh-300">
-                {s.value}
-              </dd>
-              <dd className="mt-3 text-sm text-muted">{s.label}</dd>
-            </div>
-          ))}
-        </dl>
+      <section className="px-5 sm:px-6">
+        <div className="mx-auto max-w-[1000px]">
+          <Stats items={aboutStats} />
+        </div>
       </section>
 
-      <Divider />
 
-      <section className="px-5 py-16 sm:px-6 sm:py-24">
+      <section className="px-5 py-14 sm:px-6 sm:py-20">
         <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-12 lg:grid-cols-2">
           <div>
             <SectionHeading align="left" eyebrow="Our origin" title="We didn't read about the problem. We lived it." />
@@ -77,9 +66,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Divider />
 
-      <section className="px-5 py-16 sm:px-6 sm:py-24">
+      <section className="px-5 py-14 sm:px-6 sm:py-20">
         <div className="reveal relative mx-auto max-w-[1180px] overflow-hidden rounded-[28px] border border-white/10 bg-panel px-6 py-16 sm:px-14 sm:py-20">
           <div aria-hidden className="absolute -right-40 -top-40 size-[520px] rounded-full bg-[radial-gradient(closest-side,rgb(52_227_156/0.18),transparent)] blur-2xl" />
           <div className="relative grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
@@ -100,9 +88,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Divider />
 
-      <section className="relative px-5 py-16 sm:px-6 sm:py-24">
+      <section className="relative px-5 py-14 sm:px-6 sm:py-20">
         <div className="relative mx-auto max-w-[1180px]">
           <Glow color="teal" className="left-1/2 top-1/2 h-[380px] w-[860px] -translate-x-1/2" />
           <SectionHeading
@@ -129,9 +116,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Divider />
 
-      <section className="relative px-5 py-16 sm:px-6 sm:py-24">
+      <section className="relative px-5 py-14 sm:px-6 sm:py-20">
         <div className="relative mx-auto max-w-[1180px]">
           <Glow color="amber" className="-right-40 top-24 h-[440px] w-[600px]" />
           <SectionHeading eyebrow="What we believe" title="The principles we build by." />
@@ -159,7 +145,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Divider />
       <CtaBand
         title={
           <>

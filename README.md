@@ -44,7 +44,8 @@ All copy lives in `src/content/`, separate from layout:
 
 Defined in `src/app/globals.css` (Tailwind v4 `@theme`).
 
-- **Canvas** `#09090a`: a warm near-black with plain panels and hairline borders. No grid meshes, glowing pills or gradient-filled text.
+- **Canvas** `#09090a`: a warm near-black with plain panels and hairline borders. No grid meshes, frame lines, glowing pills or gradient-filled text.
+- **Section rhythm:** sections are told apart by their surfaces, not by divider lines. On the homepage the order is: open hero, then the gradient stats band (`<Stats>`), the lit "How it works" stage (`<PipelineSection>`), cards, the featured testimonial (`<Quotes>`), the founders' letter card and the CTA band.
 - **Brand green** `mh-*` is the logo green `#166534`, pushed luminous (`#34e39c`) for dark UI.
 - **Amber** `sun-*` is reserved for moments where a **person** decides (shortlist gate, approvals, "held for review"). Green means the AI runs that stage.
 - **Gradient** appears in two deliberate places:
